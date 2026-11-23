@@ -93,9 +93,31 @@
     footer a:hover { border-color: var(--ink); }
   }
   footer a:focus-visible { outline: 2px solid var(--ice); outline-offset: 4px; border-radius: 2px; }
+  .site {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding-block: 10px;
+    font-family: var(--mono);
+    font-size: 0.9375rem;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--ice);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 6px;
+    transition: text-decoration-color 160ms ease;
+  }
+  .site svg { width: 17px; height: 17px; flex: none; fill: none; stroke: var(--ice); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  @media (hover: hover) and (pointer: fine) {
+    .site:hover { text-decoration-color: var(--ink); }
+  }
+  .site:focus-visible { outline: 2px solid var(--ice); outline-offset: 2px; border-radius: 2px; }
   .rise { animation: rise 700ms var(--ease-out) both; }
   .rise:nth-child(2) { animation-delay: 60ms; }
-  footer.rise { animation-delay: 140ms; }
+  .rise:nth-child(3) { animation-delay: 120ms; }
+  footer.rise { animation-delay: 180ms; }
   @keyframes rise { from { opacity: 0; transform: translateY(12px); } }
   @media (prefers-reduced-motion: reduce) {
     .rise { animation: fade 300ms ease both; }
@@ -124,6 +146,10 @@
   <main>
     <h1 class="rise">Harry Xie</h1>
     <p class="role rise"><span>Founder of <em>Aether</em>.</span> <span>Building tools for the next frontier.</span></p>
+    <a class="site rise" href="https://aether-labs.dev">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      aether-labs.dev
+    </a>
   </main>
   <footer class="rise">
     <span>&copy; 2026 Harry Xie</span>
