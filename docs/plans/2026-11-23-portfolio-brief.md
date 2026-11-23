@@ -2,6 +2,8 @@
 
 Written 2026-11-23 for the next session. Harry will send reference portfolios first; the build starts from those.
 
+Update, same day: Harry asked for the references to be gathered for him and answered 20 questions. The current plan is `2026-11-23-portfolio-plan.md`; steps 2 and 3 below are replaced by it. The hosting facts and steps 1, 4, 5 and 6 here still hold.
+
 ## Goal
 
 A personal portfolio at https://harryxie.me that presents Harry as the founder of Aether. Harry's words: "just describe me as a founder of Aether. ill send ref portfolios and we leave a brief for next session to build".
