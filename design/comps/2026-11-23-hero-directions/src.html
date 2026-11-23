@@ -1,0 +1,351 @@
+<title>Horizon Hero Directions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">
+<style>
+/* Layout: one dark column. Each direction is a heading rail, then two artboards side by side: the 1440 px screen and the 390 px screen, scaled to fit. */
+:root {
+  color-scheme: dark;
+  --void: #070708;
+  --line: #26252a;
+  --ink: #ece8e0;
+  --dim: #918d86;
+  --ember: #ffab45;
+  --furnace-1: #9a2c12; --furnace-2: #e2541c; --furnace-3: #ffab45; --furnace-4: #fff3dc;
+  --doppler-1: #cf3f1a; --doppler-2: #ffab45; --doppler-3: #f6f1e6; --doppler-4: #a9c9ff;
+  --ember-1: #ece8e0; --ember-2: #ece8e0; --ember-3: #ffab45; --ember-4: #ff6a2a;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --step--1: 0.75rem;
+  --step-0: 0.9375rem;
+  --step-1: 1.125rem;
+  --step-2: 1.75rem;
+  --step-3: clamp(2.25rem, 5.4vw, 4.25rem);
+  --gap: clamp(1rem, 2vw, 1.5rem);
+  --section: clamp(3.5rem, 8vw, 6.5rem);
+  /* artboard type, measured values from the reference study */
+  --ab-label: 14px;
+  --ab-label-s: 13.5px;
+  --ab-tab: 11px;
+  --ab-pad: 48px;
+  --ab-pad-s: 16px;
+  --ab-dim: 0.62;
+}
+body {
+  background: var(--void);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+  display: grid;
+  gap: var(--section);
+}
+.mono { font-family: var(--mono); font-size: var(--step--1); letter-spacing: 0.04em; color: var(--dim); }
+.intro { display: grid; gap: var(--gap); max-width: 46rem; }
+h1 { margin: 0; font-weight: 300; font-size: var(--step-3); line-height: 1.02; letter-spacing: -0.025em; text-wrap: balance; }
+h1 em { font-style: italic; font-weight: 300; }
+.lede { margin: 0; max-width: 38rem; }
+
+.switch { display: grid; gap: 0.5rem; justify-items: start; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 4px; gap: 4px; }
+.seg button {
+  font-family: var(--mono); font-size: var(--step--1); letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--dim); background: transparent; border: 0; border-radius: 999px;
+  min-height: 44px; padding: 0 1.1rem; cursor: pointer;
+  transition: transform 160ms var(--ease-out), background-color 180ms ease, color 180ms ease;
+}
+.seg button:active { transform: scale(0.97); }
+.seg button:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--void); }
+@media (hover: hover) and (pointer: fine) { .seg button[aria-pressed="false"]:hover { color: var(--ink); } }
+
+.directions { display: grid; gap: var(--section); }
+.direction { display: grid; gap: var(--gap); }
+.rail { display: grid; gap: 0.35rem; max-width: 46rem; }
+.rail h2 { margin: 0; font-weight: 400; font-size: var(--step-2); line-height: 1.1; letter-spacing: -0.015em; display: flex; gap: 0.75rem; align-items: baseline; }
+.rail h2 .key { font-family: var(--mono); font-size: var(--step-0); color: var(--ember); letter-spacing: 0.04em; }
+.rail .idea { margin: 0; font-size: var(--step-1); font-style: italic; }
+.rail .from { margin: 0; color: var(--dim); font-size: var(--step-0); line-height: 1.55; font-family: var(--mono); }
+.boards { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.4621fr); gap: var(--gap); align-items: start; }
+.board { position: relative; border: 1px solid var(--line); overflow: hidden; background: var(--void); }
+figure { margin: 0; display: grid; gap: 0.5rem; }
+
+/* artboards: fixed design sizes, scaled by script */
+.screen { position: absolute; left: 0; top: 0; transform-origin: 0 0; background: var(--void); color: var(--ink); overflow: hidden; }
+.screen.d { width: 1440px; height: 900px; }
+.screen.m { width: 390px; height: 844px; }
+.hole { position: absolute; inset: 0; display: grid; place-items: center; }
+.hole canvas { display: block; }
+.hole .nogl-note { display: none; }
+.hole.nogl canvas { display: none; }
+.hole.nogl .nogl-note { display: block; font-family: var(--mono); font-size: var(--ab-label); color: var(--dim); }
+.ui { position: absolute; inset: 0; pointer-events: none; }
+.lab { font-family: var(--mono); font-size: var(--ab-label); line-height: 1; letter-spacing: 0; text-transform: uppercase; }
+.m .lab { font-size: var(--ab-label-s); }
+.soft { opacity: var(--ab-dim); }
+.bar { position: absolute; left: 0; right: 0; top: 0; height: 96px; padding: 0 var(--ab-pad); display: flex; align-items: center; justify-content: space-between; }
+.m .bar { height: 77px; padding: 0 var(--ab-pad-s); }
+.links { display: flex; gap: 36px; }
+.boxed { border: 1px solid var(--ink); padding: 11px 16px; background: var(--void); }
+.pill { border: 1px solid var(--ink); border-radius: 999px; padding: 13px 22px; background: var(--void); }
+
+/* 1 Title card */
+.t1 { position: absolute; left: var(--ab-pad); top: 148px; margin: 0; font-family: var(--serif); font-weight: 300; font-size: 108px; line-height: 0.85; letter-spacing: 0.03em; text-transform: uppercase; }
+.t1 i { font-weight: 300; }
+.credits { position: absolute; left: var(--ab-pad); top: 372px; display: flex; gap: 56px; align-items: center; }
+.credits .sq { display: inline-block; width: 10px; height: 10px; background: var(--ink); margin-right: 10px; }
+.corner { position: absolute; width: 12px; height: 12px; border: 0 solid var(--dim); }
+.corner.tl { left: var(--ab-pad); top: 112px; border-left-width: 1px; border-top-width: 1px; }
+.corner.tr { right: var(--ab-pad); top: 112px; border-right-width: 1px; border-top-width: 1px; }
+.corner.bl { left: var(--ab-pad); bottom: 40px; border-left-width: 1px; border-bottom-width: 1px; }
+.corner.br { right: var(--ab-pad); bottom: 40px; border-right-width: 1px; border-bottom-width: 1px; }
+.cue { position: absolute; left: calc(var(--ab-pad) + 24px); bottom: 40px; }
+.site { position: absolute; right: calc(var(--ab-pad) + 24px); bottom: 40px; }
+.m .t1 { left: var(--ab-pad-s); top: 112px; font-size: 58px; }
+.m .credits { left: var(--ab-pad-s); top: 232px; flex-direction: column; align-items: flex-start; gap: 12px; }
+.m .corner.tl, .m .corner.bl { left: var(--ab-pad-s); }
+.m .corner.tr, .m .corner.br { right: var(--ab-pad-s); }
+.m .corner.tl, .m .corner.tr { top: 88px; }
+.m .corner.bl, .m .corner.br { bottom: 24px; }
+.m .cue { left: calc(var(--ab-pad-s) + 22px); bottom: 24px; }
+
+/* 2 Introduction */
+.navpill { border: 1px solid var(--line); border-radius: 999px; padding: 15px 30px; display: flex; gap: 32px; background: var(--void); }
+.wordname { font-family: var(--serif); font-size: 22px; font-weight: 400; letter-spacing: -0.01em; }
+.say { position: absolute; left: 102px; top: 182px; width: 540px; margin: 0; font-family: var(--serif); font-weight: 300; font-size: 44.64px; line-height: 1.14; letter-spacing: -0.015em; }
+.say em { font-style: italic; }
+.act { position: absolute; left: 102px; top: 596px; display: flex; gap: 24px; align-items: center; }
+.m .say { left: var(--ab-pad-s); top: 452px; width: 358px; font-size: 28px; line-height: 1.16; }
+.m .act { left: var(--ab-pad-s); top: 744px; gap: 16px; }
+.m .bar.b2 { height: 72px; }
+
+/* 3 Baseline */
+.slots { font-size: 11.2px; letter-spacing: 0.06em; }
+.slots.lab { font-size: 11.2px; }
+.bigname { position: absolute; left: 60px; top: 404px; margin: 0; font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 150px; line-height: 1; letter-spacing: -0.035em; }
+.under { position: absolute; left: 64px; top: 628px; }
+.tabs { position: absolute; left: 0; right: 0; bottom: 20px; display: flex; justify-content: center; gap: 8px; }
+.tabs span { font-family: var(--mono); font-size: var(--ab-tab); letter-spacing: 0.1em; text-transform: uppercase; height: 44px; padding: 0 18px; display: grid; place-items: center; border-top: 1px solid transparent; opacity: var(--ab-dim); }
+.tabs span.on { border-top-color: var(--ink); opacity: 1; }
+.m .bigname { left: 14px; top: 388px; font-size: 72px; }
+.m .under { left: var(--ab-pad-s); top: 520px; }
+.m .tabs { bottom: 12px; gap: 0; padding: 0 var(--ab-pad-s); }
+.m .tabs span { flex: 1; padding: 0; font-size: 10px; }
+
+.close { display: grid; gap: var(--gap); max-width: 46rem; }
+.close h2 { margin: 0; font-weight: 400; font-size: var(--step-2); line-height: 1.1; letter-spacing: -0.015em; }
+.close p { margin: 0; color: var(--dim); font-size: var(--step-0); line-height: 1.55; font-family: var(--mono); }
+
+@media (max-width: 720px) {
+  .boards { grid-template-columns: minmax(0, 1fr); }
+  .fig.phone { max-width: 320px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .seg button { transition: background-color 180ms ease, color 180ms ease; }
+}
+</style>
+
+<div class="page">
+  <header class="intro">
+    <h1>Three layouts for the <em>Horizon</em> hero</h1>
+    <p class="lede">Each layout is shown as your first screen on a desktop (1440 px wide) and on a phone (390 px wide). The black hole is live in every frame. The structure of each one comes from a real site in the reference study; the sizes named below were measured there. Pick a layout, and use the switch to pick the colour.</p>
+    <div class="switch">
+      <span class="mono" id="seg-label">Colour of the black hole, in every frame</span>
+      <div class="seg" role="group" aria-labelledby="seg-label">
+        <button type="button" id="pal-furnace" data-palette="furnace" aria-pressed="true">Furnace</button>
+        <button type="button" id="pal-doppler" data-palette="doppler" aria-pressed="false">Doppler</button>
+        <button type="button" id="pal-ember" data-palette="ember" aria-pressed="false">Ember</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="directions">
+    <section class="direction">
+      <div class="rail">
+        <h2><span class="key">1</span>Title card</h2>
+        <p class="idea">The role is the headline. Your name is the credit line under it, like the opening card of a film.</p>
+        <p class="from">Structure from adrienquechon.com: a capital serif headline at 108 px with 0.85 line height, a small mono credit row under it, corner marks, mono links at the top right. On a phone the headline drops to 58 px.</p>
+      </div>
+      <div class="boards">
+        <figure class="fig">
+          <div class="board" data-w="1440" data-h="900">
+          <div class="screen d">
+            <div class="hole" data-preset='{"elev":0.055,"dist":13,"roll":0.14,"cx":0.82,"cy":-0.34,"spin":-1}'><canvas aria-label="Live ASCII black hole, low on the right; its bright disk line crosses the screen"></canvas><p class="nogl-note">WebGL is off in this browser.</p></div>
+            <div class="ui">
+              <div class="bar"><span class="lab">Harry Xie</span><span class="links lab"><span>Aether</span><span>Work</span><span>About</span><span>Contact</span></span></div>
+              <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+              <p class="t1">Founder<br>of Aether</p>
+              <div class="credits lab"><span><i class="sq"></i>Harry Xie</span><span class="soft">Also known as Elixir</span><span class="soft">AI research lab</span></div>
+              <span class="cue lab soft">Scroll to fall in</span>
+              <span class="site lab soft">harryxie.me</span>
+            </div>
+          </div>
+        </div>
+          <figcaption class="mono">1440 px wide, desktop</figcaption>
+        </figure>
+        <figure class="fig phone">
+          <div class="board" data-w="390" data-h="844">
+          <div class="screen m">
+            <div class="hole" data-preset='{"elev":0.055,"dist":24,"roll":0.14,"cx":0.2,"cy":-0.44,"spin":-1}'><canvas aria-label="Live ASCII black hole in the lower half of the phone screen"></canvas><p class="nogl-note">WebGL is off in this browser.</p></div>
+            <div class="ui">
+              <div class="bar"><span class="lab">Harry Xie</span><span class="lab boxed">Menu</span></div>
+              <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+              <p class="t1">Founder<br>of Aether</p>
+              <div class="credits lab"><span><i class="sq"></i>Harry Xie</span><span class="soft">Also known as Elixir</span><span class="soft">AI research lab</span></div>
+              <span class="cue lab soft">Scroll to fall in</span>
+            </div>
+          </div>
+        </div>
+          <figcaption class="mono">390 px wide, phone</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="direction">
+      <div class="rail">
+        <h2><span class="key">2</span>Introduction</h2>
+        <p class="idea">Your own sentence is the hero. The disk cuts the screen on a diagonal and the words sit in the quiet corner it leaves.</p>
+        <p class="from">Structure from windowtomars.com: a light headline at 44.6 px in a left column, the graphic on the right, and on a phone the graphic moves above the words. The 96 px bar with a pill of links is from carterogunsola.com.</p>
+      </div>
+      <div class="boards">
+        <figure class="fig">
+          <div class="board" data-w="1440" data-h="900">
+          <div class="screen d">
+            <div class="hole" data-preset='{"elev":0.055,"dist":13,"roll":-0.6,"cx":0.86,"cy":0.25,"spin":-1}'><canvas aria-label="Live ASCII black hole at the upper right; its disk line runs down to the lower left"></canvas><p class="nogl-note">WebGL is off in this browser.</p></div>
+            <div class="ui">
+              <div class="bar b2"><span class="wordname">Harry Xie</span><span class="navpill lab"><span>Aether</span><span>Work</span><span>About</span></span><span class="lab pill">Contact</span></div>
+              <p class="say">Hi. I&rsquo;m Harry, or Elixir. I am the founder of <em>Aether</em>, an AI research lab contributing to the next frontier.</p>
+              <div class="act"><span class="lab pill">Enter Aether</span><span class="lab soft">or scroll to fall in</span></div>
+            </div>
+          </div>
+        </div>
+          <figcaption class="mono">1440 px wide, desktop</figcaption>
+        </figure>
+        <figure class="fig phone">
+          <div class="board" data-w="390" data-h="844">
+          <div class="screen m">
+            <div class="hole" data-preset='{"elev":0.055,"dist":26,"roll":-0.5,"cx":0.2,"cy":0.36,"spin":-1}'><canvas aria-label="Live ASCII black hole in the upper half of the phone screen, above the words"></canvas><p class="nogl-note">WebGL is off in this browser.</p></div>
+            <div class="ui">
+              <div class="bar b2"><span class="wordname">Harry Xie</span><span class="lab pill">Menu</span></div>
+              <p class="say">Hi. I&rsquo;m Harry, or Elixir. I am the founder of <em>Aether</em>, an AI research lab contributing to the next frontier.</p>
+              <div class="act"><span class="lab pill">Enter Aether</span><span class="lab soft">or scroll</span></div>
+            </div>
+          </div>
+        </div>
+          <figcaption class="mono">390 px wide, phone</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="direction">
+      <div class="rail">
+        <h2><span class="key">3</span>Baseline</h2>
+        <p class="idea">The bright line of the disk is the line your name is written on. Almost nothing else is on the screen.</p>
+        <p class="from">Structure from nahiyan.codes: four tabs at the bottom, 11 px mono with wide spacing, each 44 px tall so a thumb can hit it. The three-part top bar at 11.2 px is from zenobasi.com.</p>
+      </div>
+      <div class="boards">
+        <figure class="fig">
+          <div class="board" data-w="1440" data-h="900">
+          <div class="screen d">
+            <div class="hole" data-preset='{"elev":0.055,"dist":13,"roll":0,"cx":1.0,"cy":-0.24,"spin":-1}'><canvas aria-label="Live ASCII black hole at the right edge; its disk is one level line across the screen"></canvas><p class="nogl-note">WebGL is off in this browser.</p></div>
+            <div class="ui">
+              <div class="bar"><span class="lab slots">Founder of Aether, an AI research lab</span><span class="lab slots soft">harryxie.me</span><span class="lab slots">Contact</span></div>
+              <p class="bigname">Harry Xie</p>
+              <div class="tabs"><span class="on">Aether</span><span>Work</span><span>About</span><span>Contact</span></div>
+            </div>
+          </div>
+        </div>
+          <figcaption class="mono">1440 px wide, desktop</figcaption>
+        </figure>
+        <figure class="fig phone">
+          <div class="board" data-w="390" data-h="844">
+          <div class="screen m">
+            <div class="hole" data-preset='{"elev":0.055,"dist":30,"roll":0,"cx":0.56,"cy":-0.1,"spin":-1}'><canvas aria-label="Live ASCII black hole at the right edge of the phone screen; its disk is a level line at mid height"></canvas><p class="nogl-note">WebGL is off in this browser.</p></div>
+            <div class="ui">
+              <div class="bar"><span class="lab slots">Founder of Aether</span><span class="lab slots">Contact</span></div>
+              <p class="bigname">Harry Xie</p>
+              <span class="under lab soft">An AI research lab</span>
+              <div class="tabs"><span class="on">Aether</span><span>Work</span><span>About</span><span>Contact</span></div>
+            </div>
+          </div>
+        </div>
+          <figcaption class="mono">390 px wide, phone</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <section class="close">
+    <h2>What the study could not measure</h2>
+    <p>The ten reference sites gave real numbers for type, bars and colours. None of them gave a timing for a pinned scroll scene, because the motion capture tool failed twice. The scroll pacing in the build therefore starts from my own estimate and gets tuned by eye.</p>
+  </section>
+</div>
+
+<script>
+/*__HOLE_JS__*/
+</script>
+<script>
+(() => {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const pointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const css = getComputedStyle(document.documentElement);
+  const rgb = (name) => {
+    const n = parseInt(css.getPropertyValue(name).trim().replace("#", ""), 16);
+    return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+  };
+  const PALETTES = { furnace: { dop: 0.3 }, doppler: { dop: 1.0 }, ember: { dop: 0.3 } };
+  for (const name of Object.keys(PALETTES)) {
+    PALETTES[name].ramp = new Float32Array([1, 2, 3, 4].flatMap((i) => rgb("--" + name + "-" + i)));
+  }
+  let current = "furnace";
+  try { const saved = localStorage.getItem("hero-palette"); if (saved && PALETTES[saved]) current = saved; } catch (err) {}
+
+  for (const board of document.querySelectorAll(".board")) {
+    const w = Number(board.dataset.w), h = Number(board.dataset.h);
+    const screen = board.querySelector(".screen");
+    const fit = () => {
+      const s = board.clientWidth / w;
+      screen.style.transform = "scale(" + s + ")";
+      board.style.height = Math.round(h * s) + "px";
+    };
+    new ResizeObserver(fit).observe(board);
+    fit();
+  }
+
+  const holes = Array.from(document.querySelectorAll(".hole")).map((el) => window.createHole(el, {
+    preset: JSON.parse(el.dataset.preset), palette: PALETTES[current],
+    ink: rgb("--ink"), voidColor: rgb("--void"), reduce, pointer
+  })).filter(Boolean);
+
+  const buttons = Array.from(document.querySelectorAll(".seg button"));
+  const select = (name) => {
+    current = name;
+    for (const b of buttons) b.setAttribute("aria-pressed", String(b.dataset.palette === name));
+    for (const v of holes) v.setPalette(PALETTES[name]);
+    try { localStorage.setItem("hero-palette", name); } catch (err) {}
+  };
+  for (const b of buttons) b.addEventListener("click", () => select(b.dataset.palette));
+  select(current);
+
+  function tick(now) {
+    for (const v of holes) if (v.active()) v.draw(now);
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  if (document.fonts && document.fonts.load) {
+    document.fonts.load('500 16px "IBM Plex Mono"').then((faces) => {
+      if (!faces.length) return;
+      for (const v of holes) v.setFont('"IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace');
+    }).catch(() => {});
+  }
+})();
+</script>
