@@ -17,4 +17,4 @@ Harry's personal site. GitHub Pages user site for `harryx2011-boop`, served at h
 ## Log
 
 - 2026-11-23: Domain checked (already pointed at GitHub Pages), certificate re-requested and approved, HTTPS enforced, holding page published. Portfolio brief written.
-- 2026-11-23: Open side track: animated, more detailed Vulcan logo (ASCII flame on the Vulcan hero gradient) to replace `vulcan-pill.png` in the GitHub profile README repo `harryx2011-boop/harryx2011-boop`. Directions go on an Artifact page first.
+- 2026-11-23: Open side track: animated, more detailed Vulcan logo (ASCII flame on the Vulcan hero gradient) to replace `vulcan-pill.png` in the GitHub profile README repo `harryx2011-boop/harryx2011-boop`. Directions A "Finer pill", B "Hero card" (8:5, matches Clawd's cell), C "White-hot core" are live at https://claude.ai/code/artifact/a0cb68c2-671f-43b2-b6fb-6f2511b97564 (source: the session scratchpad, rebuilt from the Vulcan mark paths and hero tokens). Waiting on Harry's pick; then export an animated image and replace `vulcan-pill.png` in the profile repo.
