@@ -6,7 +6,7 @@ Harry's personal site. GitHub Pages user site for `harryx2011-boop`, served at h
 
 - Live: a one-screen holding page (`index.html`, `aether.svg`, `.nojekyll`), commit `25eb6d0`, 2026-11-23, plus a Lucide link icon and `aether-labs.dev` on its own line under the tagline (commit `2733528`). aether-labs.dev is Harry's (name.com) but still parked; the link works once the Aether site is hosted there.
 - Next: the full portfolio, built in Next.js (static export, GitHub Actions deploy). Plan with Harry's 20 answers: `docs/plans/2026-11-23-portfolio-plan.md` (the older `2026-11-23-portfolio-brief.md` keeps the hosting facts). Concept: a dark one-page scroll whose hero is a live black hole in pure ASCII; scrolling flies the camera into it.
-- Waiting on Harry: the black hole view (A "Bent disk", B "Ring", C "Horizon") on https://claude.ai/code/artifact/d07ecb7f-8225-4d19-aeb8-b548319a5689, and a Discord handle or invite.
+- Harry picked the Horizon view ("horizon - add more color to it"). Waiting on Harry: the colour treatment (1 "Furnace", 2 "Doppler", 3 "Ember") on https://claude.ai/code/artifact/d07ecb7f-8225-4d19-aeb8-b548319a5689, and a Discord handle or invite.
 - Design files: `design/comps/2026-11-23-black-hole-views/` (`src.html` is the source; `build.py <comp dir> <refs dir> <scratch dir>` inlines the hands map and writes `black-hole-views.html`), `design/refs/creation-of-adam/` (halftone footer: `hands.py <scan> <out dir>` builds `hands-map.b64` from the Wikimedia Commons scan `Michelangelo_-_Creation_of_Adam_(cropped).jpg`, which is not committed), `design/refs/study/` (reference study, not committed).
 - Do not push `docs/` or this file while Pages still builds from the branch: everything in the repo is served as it is until the Actions build replaces it.
 
@@ -17,6 +17,8 @@ Harry's personal site. GitHub Pages user site for `harryx2011-boop`, served at h
 - A push to `main` updates the live site: needs Harry's go.
 
 ## Log
+
+- 2026-11-23 (evening): Harry picked Horizon and asked for more colour; the demo page now shows Horizon in three colour treatments (the scene shader outputs brightness, temperature and disk share per character; the character shader maps temperature through a 4-stop ramp from CSS tokens). He also said of the footer: "hands look deformed". Cause: the first map was a wide crop at 360 x 114 with a colour mask that ate the shadowed fingers, so a finger was about 2 dots thick. Fix: `hands.py` now crops only the two hands, fills the outline, keeps the painting's own shading inside it, and writes a 480 x 171 map; dots are finer (page width / 240).
 
 - 2026-11-23 (later): Harry asked for "a actual portfolio and complex web design animations/transitions and a clean.polished and premium scorll through", dark, with "a black hole in ascii/dithered animated as the hero". He answered 20 questions (table in the plan). He goes by Harry or Elixir. Built and published the live ASCII black hole demo (WebGL: Schwarzschild light bending rendered to a character grid, 4 samples per character, ramp ` .:-=+*#%@`, amber only above 0.9 brightness) with three views and a Fall in preview, plus the footer he asked for mid-session: the hands from Michelangelo's The Creation of Adam in halftone dots. Checked in headless Edge at 1440 and 390 px. A reference study of award-level sites was started in the background.
 

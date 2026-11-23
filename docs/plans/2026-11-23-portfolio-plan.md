@@ -19,8 +19,8 @@ Event horizon. The page is one fall into a black hole drawn in characters, and t
 | 3 | References | "mine and find them": awwwards search plus his reel notes and component libraries |
 | 4 | Framing | Founder of Aether |
 | 5 | Hero drawing | Pure ASCII |
-| 6 | Black hole view | "artifact page": he picks A "Bent disk", B "Ring" or C "Horizon" from the live demo, https://claude.ai/code/artifact/d07ecb7f-8225-4d19-aeb8-b548319a5689. Open. |
-| 7 | Colour | Off-white on black, one warm amber accent at the hottest point |
+| 6 | Black hole view | "horizon - add more color to it": view C, the camera skims the disk 3 degrees above it, the hole is cropped by the right edge and one bright line crosses the screen |
+| 7 | Colour | First answer: off-white on black with one amber accent. Changed the same day to "add more color": he picks 1 "Furnace" (deep red to white-hot, by heat), 2 "Doppler" (red to pale blue-white, by motion) or 3 "Ember" (off-white with a wide amber and red-orange band) on https://claude.ai/code/artifact/d07ecb7f-8225-4d19-aeb8-b548319a5689. Open. The page ground stays black and the type stays off-white. |
 | 8 | Hero interaction | Cursor shifts the camera; scroll falls into the hole |
 | 9 | Site shape | One long page |
 | 10 | Motion level | Cinematic: a pinned scene in every chapter, split-letter headlines, image hover distortion |
@@ -52,7 +52,7 @@ Earlier decisions that still hold: GitHub Pages, Namecheap DNS, Next.js static e
 
 ## Inputs still needed from Harry
 
-- The view: A, B or C.
+- The colour treatment of the Horizon view: 1, 2 or 3.
 - A Discord handle or invite link.
 - Which film files are final.
 - aether-labs.dev is still parked, so its link fails until the Aether site is hosted.
@@ -61,7 +61,7 @@ Earlier decisions that still hold: GitHub Pages, Namecheap DNS, Next.js static e
 ## Steps
 
 1. Reference study (running 2026-11-23): 8 to 10 award-level sites, measured. Output `design/refs/study/notes.md`. Verify: the file has a token table and the six answers.
-2. Harry picks the black hole view on the demo page. Verify: his answer is recorded in the table above.
+2. Harry picked the Horizon view; he still picks its colour treatment on the demo page. Verify: his answer is recorded in the table above.
 3. Directions page: 3 hero comps at 390 and 1440 px, built from the study, published as an artifact. Harry picks one. Then write `design/direction.md` and `TOKENS.md`. Verify: both files exist and name the pick.
 4. Scaffold Next.js (`output: 'export'`, `images.unoptimized`), `CNAME` in `public/`, components from harry-ui first, then shadcn/ui. Verify: `npx tsc --noEmit` and `npm run build` write `out/index.html`.
 5. Add `.github/workflows/pages.yml` and switch Pages to `build_type: workflow` before anything under `docs/` or `design/` is pushed. Verify: `gh api repos/harryx2011-boop/harryx2011-boop.github.io/pages --jq .build_type` prints `workflow`.
