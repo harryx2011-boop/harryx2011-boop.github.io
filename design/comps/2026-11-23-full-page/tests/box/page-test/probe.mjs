@@ -1,0 +1,14 @@
+import { serve, launch, sleep, STATE } from './lib.mjs';
+const srv = await serve(8123);
+const c = await launch(9444);
+await c.send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
+await c.load('http://127.0.0.1:8123/');
+await sleep(2000);
+console.log(JSON.stringify(await c.ev(`(() => { const cv = document.createElement('canvas'); const gl = cv.getContext('webgl'); if (!gl) return {gl:false}; const d = gl.getExtension('WEBGL_debug_renderer_info'); return { gl: true, renderer: d ? gl.getParameter(d.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER), vendor: d ? gl.getParameter(d.UNMASKED_VENDOR_WEBGL) : '' }; })()`)));
+console.log(JSON.stringify(await c.ev(STATE)));
+console.log(await c.ev(`(async()=>{const t=performance.now();let n=0;await new Promise(r=>{function f(){n++;if(performance.now()-t>3000)r();else requestAnimationFrame(f)}requestAnimationFrame(f)});return 'rAF frames in 3s: '+n+' stage canvas '+document.querySelector('#stage canvas').width+'x'+document.querySelector('#stage canvas').height})()`));
+console.log(await c.ev(`document.height||document.documentElement.scrollHeight`));
+await c.shot('/workspace/page-test/probe.png');
+console.log('errors', c.errors.length, JSON.stringify(c.errors.slice(0, 10)));
+console.log('failed', JSON.stringify(c.failed));
+c.close(); srv.close(); process.exit(0);

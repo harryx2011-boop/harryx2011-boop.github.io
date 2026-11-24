@@ -1,0 +1,114 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Harry Xie Portfolio</title>
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="chapters.css">
+<link rel="stylesheet" href="crt.css">
+<link rel="stylesheet" href="crt-os.css">
+</head><body>
+<header class="bar" id="bar">
+  <a class="wordname" id="wordname" href="#top">Harry Xie</a>
+  <nav class="navpill" aria-label="Sections">
+    <a href="#aether">Aether</a><a href="#work">Work</a><a href="#about">About</a>
+  </nav>
+  <a class="pill to-contact" href="#contact">Contact</a>
+  <button class="pill menu-btn" type="button" id="menu-open" aria-haspopup="dialog">Menu</button>
+</header>
+
+<dialog class="drawer" id="drawer" aria-label="Menu">
+  <div class="drawer-in">
+    <div class="drawer-top"><span class="wordname">Harry Xie</span><button class="pill" type="button" id="menu-close">Close</button></div>
+    <nav class="drawer-links" aria-label="Sections">
+      <a href="#aether">Aether</a><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </nav>
+  </div>
+</dialog>
+
+<main>
+  <section class="hero track" id="top" data-track="hero">
+    <div class="pin">
+      <div class="hero-copy" id="hero-copy">
+        <h1 class="say">Hi. I&rsquo;m Harry (or I can go by Elixir). I am the founder of <span class="mark"><svg class="gem-inline" aria-hidden="true"><use href="#gem"/></svg>Aether,</span> an AI research lab contributing to the next frontier.</h1>
+        <div class="act"><a class="pill" href="#aether">Enter Aether</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter aether" id="aether-chapter" data-nav="aether" aria-labelledby="wordmark">
+    <div class="track" data-track="aether">
+      <span class="jump" id="aether"></span>
+      <div class="pin">
+        <div class="lockup">
+          <div class="gem-tile">
+            <svg viewBox="0 0 512 512" role="img" aria-label="The Aether mark: a hexagon cut into four faces">
+              <rect id="gem-bg" width="512" height="512" rx="112" fill="url(#tile-bg)"/>
+              <g stroke="var(--aether-edge)" stroke-width="3" stroke-linejoin="round">
+                <polygon class="face" data-dx="-0.5" data-dy="-1" points="256,118 366,182 224,236 146,182" fill="var(--aether-ice)"/>
+                <polygon class="face" data-dx="1" data-dy="-0.1" points="366,182 366,310 224,236" fill="var(--aether-blue)"/>
+                <polygon class="face" data-dx="-1" data-dy="0.1" points="146,182 224,236 146,310" fill="var(--aether-sky)"/>
+                <polygon class="face" data-dx="0.4" data-dy="1" points="366,310 256,374 146,310 224,236" fill="var(--aether-navy)"/>
+              </g>
+            </svg>
+          </div>
+          <h2 class="wordmark" id="wordmark">Aether</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter work" id="work">
+    <header class="chead gut"><h2>Work</h2></header>
+    <div class="rig gut">
+      <div class="crt" id="crt" data-scene="a">
+        <canvas class="crt-back" aria-hidden="true"></canvas>
+        <div class="crt-screen" id="os" role="group" aria-label="An old computer showing Harry's work: the reveal film, the Night Market renders, a notes file and a terminal"></div>
+        <canvas class="crt-front" aria-hidden="true"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter about" id="about">
+    <header class="chead gut"><h2>About</h2></header>
+    <div class="about-grid gut">
+      <img class="frame portrait" src="media/ceres-fauna.jpg" width="400" height="400" alt="Profile picture: a drawing of Ceres Fauna making a peace sign" loading="lazy">
+      <div class="who">
+        <h3 class="name">Elixir</h3>
+        <dl class="stats">
+          <dt id="stat-contrib">569</dt><dd>contributions in the last year</dd>
+          <dt>12</dt><dd>public repositories</dd>
+        </dl>
+      </div>
+      <div class="year">
+        <pre class="grid-days" id="activity" role="img" aria-label="Contribution activity"></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact track" id="contact" data-track="contact">
+    <div class="pin">
+      <div class="contact-copy">
+        <h2 class="big split">Contact</h2>
+        <ul class="channels">
+          <li><a class="channel" href="https://github.com/harryx2011-boop" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#logo-github"/></svg><span class="title">GitHub</span><span class="handle">harryx2011-boop</span></a></li>
+          <li><button class="channel" type="button" id="copy-discord" aria-label="Discord, @ogexr. Copy the handle"><svg aria-hidden="true"><use href="#logo-discord"/></svg><span class="title">Discord</span><span class="handle" id="discord-handle" aria-live="polite">@ogexr</span></button></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="data.js"></script>
+<script src="engine.js"></script>
+<script src="chapters.js"></script>
+<script src="crt-engine.js"></script>
+<script src="crt-plants.js"></script>
+<script src="crt-computer.js"></script>
+<script src="crt-ground.js"></script>
+<script src="crt-scenes.js"></script>
+<script src="crt-scene.js"></script>
+<script src="os-icons.js"></script>
+<script src="os-apps.js"></script>
+<script src="os.js"></script>
+<script src="github.js"></script>
+<script src="ui.js"></script>
+</body></html>
