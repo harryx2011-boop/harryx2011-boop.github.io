@@ -34,7 +34,8 @@
     var here = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
-        links.forEach(function (a) { a.setAttribute("aria-current", String(a.getAttribute("href") === "#" + en.target.id)); });
+        var name = en.target.dataset.nav || en.target.id;
+        links.forEach(function (a) { a.setAttribute("aria-current", String(a.getAttribute("href") === "#" + name)); });
       });
     }, { rootMargin: "-45% 0px -45% 0px" });
     document.querySelectorAll("main > section").forEach(function (s) { here.observe(s); });

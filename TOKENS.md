@@ -12,7 +12,7 @@ The only colours, sizes, radii and easings the site may use. Source of truth in 
 | `--faint` | `#3b393f` | empty days in the activity grid |
 | `--ink` | `#ece8e0` | all text, pill borders |
 | `--dim` | `#918d86` | secondary text |
-| `--furnace-1..4` | `#9a2c12`, `#e2541c`, `#ffab45`, `#fff3dc` | the hole, the activity grid, the dot between the hands, focus rings (`--furnace-3`) |
+| `--furnace-1..4` | `#9a2c12`, `#e2541c`, `#ffab45`, `#fff3dc` | the hole, the activity grid, the dot between the hands. Focus rings are `--ink` |
 | `--aether-ice`, `-sky`, `-blue`, `-navy` | `#eef8fa`, `#71b1d7`, `#1c5a8b`, `#0a1930` | the four faces of the Aether mark |
 | `--aether-deep` to `--aether-blue` | `#0b1d36` to `#1c5a8b` | the blue banner band (sampled from `banner-blue.png`) |
 
@@ -29,7 +29,8 @@ Dark only. No pure black or white for text or ground.
 | `--t-note` | `clamp(24px, 2.5vw, 36px)`, line 1.25 | About note |
 | `--t-title` | `28px`, line 1.1 | work titles, channel names |
 | `--t-label` | `14px` (13.5 px under 720 px), uppercase, line 1 | every label (measured) |
-| `--t-mono` | `13px`, line 1.6 | mono body (measured) |
+| `--t-mono` | `15px`, line 1.6 | mono body (raised from the measured 13 px so prose is not smaller than labels) |
+| `--t-word`, `--t-drawer` | `22px`, `35px` | the name in the header; phone menu links (measured) |
 
 Never Inter, Geist, Space Grotesk or JetBrains Mono for display.
 

@@ -15,7 +15,9 @@
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-hover: cubic-bezier(0.5, 1, 0.89, 1);
   --t-label: 14px;
-  --t-mono: 13px;
+  --t-mono: 15px;
+  --t-word: 22px;
+  --t-drawer: 35px;
   --t-title: 28px;
   --t-say: clamp(28px, min(3.1vw, 5svh), 44.64px);
   --t-head: clamp(64px, 11vw, 168px);
@@ -32,7 +34,6 @@
   :root { --pad: 16px; --bar: 72px; --t-label: 13.5px; --t-title: 24px; }
 }
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background: var(--void);
@@ -47,7 +48,7 @@ h1, h2, h3, p, figure, ul, dl, dd { margin: 0; }
 ul { padding: 0; list-style: none; }
 img, video, canvas { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
-:focus-visible { outline: 2px solid var(--furnace-3); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 
 .lab { font-family: var(--mono); font-size: var(--t-label); line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; }
@@ -83,7 +84,8 @@ main, .foot { position: relative; z-index: 1; }
   pointer-events: none;
 }
 .bar > * { pointer-events: auto; }
-.wordname { font-size: 22px; line-height: 1; letter-spacing: -0.01em; text-decoration: none; padding: 12px 0; }
+.bar::before { content: ""; position: absolute; inset: 0 0 -24px; z-index: -1; background: linear-gradient(var(--void) 60%, transparent); opacity: var(--ground, 0); pointer-events: none; }
+.wordname { font-size: var(--t-word); line-height: 1; letter-spacing: -0.01em; text-decoration: none; padding: 12px 0; }
 .navpill {
   position: absolute; left: 50%; transform: translateX(-50%);
   display: flex; padding: 0 10px;
@@ -114,7 +116,7 @@ main, .foot { position: relative; z-index: 1; }
 .drawer-in { height: 100%; display: grid; grid-template-rows: var(--bar) 1fr; padding: 0 var(--gut-r) var(--s-5) var(--gut-l); }
 .drawer-top { display: flex; align-items: center; justify-content: space-between; }
 .drawer-links { display: grid; align-content: end; gap: var(--s-2); }
-.drawer-links a { font-size: 35px; line-height: 1.06; letter-spacing: -0.028em; font-weight: 300; text-decoration: none; padding: 6px 0; }
+.drawer-links a { font-size: var(--t-drawer); line-height: 1.06; letter-spacing: -0.028em; font-weight: 300; text-decoration: none; padding: 6px 0; }
 
 /* pinned tracks */
 .track { position: relative; }
@@ -129,15 +131,14 @@ main, .foot { position: relative; z-index: 1; }
   will-change: transform, opacity;
 }
 .hero-copy::before, .contact-copy::before {
-  content: ""; position: absolute; inset: -56px -72px; z-index: -1; pointer-events: none;
-  background: radial-gradient(closest-side, var(--void) 62%, transparent);
+  content: ""; position: absolute; inset: -96px -128px; z-index: -1; pointer-events: none;
+  background: radial-gradient(closest-side, var(--void) 82%, transparent);
 }
 .say { font-weight: 300; font-size: var(--t-say); line-height: 1.14; letter-spacing: -0.015em; }
-.say em { font-style: italic; }
 .say .mark { white-space: nowrap; }
 .gem-inline { display: inline-block; width: 0.86em; height: 0.86em; vertical-align: -0.1em; margin-right: 0.14em; }
 .act { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; }
-.readout { position: absolute; left: var(--gut-l); bottom: var(--s-4); display: flex; gap: 0.6em; will-change: opacity; }
+.readout { position: absolute; left: var(--gut-l); bottom: var(--s-4); display: flex; gap: 0.6em; will-change: opacity; background: var(--void); padding: var(--s-1) 12px; margin-left: -12px; }
 .readout b { font-weight: 500; color: var(--ink); min-width: 4ch; text-align: right; font-variant-numeric: tabular-nums; }
 @media (max-width: 720px) {
   .hero-copy { left: var(--gut-l); top: auto; bottom: 84px; gap: var(--s-4); }
@@ -154,14 +155,13 @@ main, .foot { position: relative; z-index: 1; }
 .split span { display: inline-block; }
 .js .split span {
   opacity: 0; transform: translateY(0.35em);
-  transition: transform 700ms var(--ease-out) calc(var(--i) * 35ms), opacity 500ms ease calc(var(--i) * 35ms);
+  transition: transform 700ms var(--ease-out) calc(var(--i) * 35ms), opacity 500ms var(--ease-out) calc(var(--i) * 35ms);
 }
 .js .split.in span { opacity: 1; transform: none; }
 .title { font-weight: 400; font-size: var(--t-title); line-height: 1.1; letter-spacing: -0.015em; }
 .frame { border: 1px solid var(--line); background: var(--void); }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   .js .split span { transform: none; transition: opacity 300ms ease; }
   .pill { transition: background-color 300ms var(--ease-hover), color 300ms var(--ease-hover); }
   .pill:active { transform: none; }

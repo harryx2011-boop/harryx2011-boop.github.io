@@ -5,7 +5,7 @@
   var faces = Array.prototype.slice.call(document.querySelectorAll(".gem-tile .face"));
   var tile = document.getElementById("gem-bg");
   var wordmark = document.getElementById("wordmark");
-  var line = document.getElementById("lockup-line");
+  var lockup = document.querySelector(".lockup");
   var THROW = 150, TURN = 26;
 
   P.scene(function (tracks) {
@@ -21,6 +21,7 @@
     var w = P.easeOut(P.band(p, 0.46, 0.68));
     wordmark.style.clipPath = "inset(-10% " + ((1 - w) * 100).toFixed(1) + "% -20% 0)";
     wordmark.style.transform = "translate3d(" + (-28 * (1 - w)).toFixed(1) + "px,0,0)";
-    line.style.opacity = P.band(p, 0.62, 0.74).toFixed(3);
+    var room = (wordmark.offsetWidth + parseFloat(getComputedStyle(lockup).columnGap || 0)) / 2;
+    lockup.style.transform = "translate3d(" + ((1 - w) * room).toFixed(1) + "px,0,0)";
   });
 })();

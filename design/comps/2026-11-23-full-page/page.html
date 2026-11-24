@@ -29,7 +29,7 @@
 <header class="bar" id="bar">
   <a class="wordname" id="wordname" href="#top">Harry Xie</a>
   <nav class="navpill lab" aria-label="Sections">
-    <a href="#aether">Aether</a><a href="#work">Work</a><a href="#about">About</a>
+    <a href="#aether">Aether</a><a href="#work">Work</a><a href="#github">GitHub</a><a href="#about">About</a>
   </nav>
   <a class="pill to-contact" href="#contact">Contact</a>
   <button class="pill menu-btn" type="button" id="menu-open" aria-haspopup="dialog">Menu</button>
@@ -48,15 +48,16 @@
   <section class="hero track" id="top" data-track="hero">
     <div class="pin">
       <div class="hero-copy" id="hero-copy">
-        <h1 class="say">Hi. I&rsquo;m Harry (or I can go by Elixir). I am the founder of <span class="mark"><svg class="gem-inline" aria-hidden="true"><use href="#gem"/></svg><em>Aether</em>,</span> an AI research lab contributing to the next frontier.</h1>
+        <h1 class="say">Hi. I&rsquo;m Harry (or I can go by Elixir). I am the founder of <span class="mark"><svg class="gem-inline" aria-hidden="true"><use href="#gem"/></svg>Aether,</span> an AI research lab contributing to the next frontier.</h1>
         <div class="act"><a class="pill" href="#aether">Enter Aether</a><span class="lab soft">or scroll to fall in</span></div>
       </div>
       <p class="readout lab soft" id="readout" aria-hidden="true"><span>Distance</span><b id="readout-r">13.0</b><span>radii</span></p>
     </div>
   </section>
 
-  <section class="chapter aether" id="aether" aria-labelledby="wordmark">
+  <section class="chapter aether" id="aether-chapter" data-nav="aether" aria-labelledby="wordmark">
     <div class="track" data-track="aether">
+      <span class="jump" id="aether"></span>
       <div class="pin">
         <div class="lockup">
           <div class="gem-tile">
@@ -72,17 +73,15 @@
           </div>
           <h2 class="wordmark" id="wordmark">Aether</h2>
         </div>
-        <p class="lab soft lockup-line" id="lockup-line">An AI research lab contributing to the next frontier</p>
       </div>
     </div>
     <div class="banners">
       <figure class="banner gut">
         <video class="frame" src="media/banner-coast.mp4" poster="media/banner-coast-poster.jpg" width="1280" height="360" muted loop playsinline preload="none" data-autoplay aria-label="The Aether mark and wordmark over a coastline photo, with characters shimmering across it"></video>
-        <figcaption class="cap lab soft"><span>Banner from the GitHub profile</span><span>Coastline, shimmer loop</span></figcaption>
+        <figcaption class="cap lab soft"><span>Banner from the GitHub profile</span></figcaption>
       </figure>
       <figure class="banner">
-        <div class="blueband"><img src="media/banner-blue.png" width="1280" height="360" alt="The Aether mark above the line: Building tools for the next frontier. Below it, aether-labs.dev." loading="lazy"></div>
-        <figcaption class="cap lab soft gut"><span>aether-labs.dev</span><span>Coming soon</span></figcaption>
+        <div class="blueband gut"><svg class="gem-band" aria-hidden="true"><use href="#gem"/></svg><p class="band-line">Building tools for the next frontier.</p><p class="lab">aether-labs.dev, coming soon</p></div>
       </figure>
     </div>
   </section>
@@ -92,7 +91,7 @@
     <div class="films gut">
       <figure class="film a">
         <video class="frame" src="media/reveal-loop.mp4" poster="media/reveal-poster.jpg" width="960" height="540" muted loop playsinline preload="none" data-autoplay aria-label="Ten seconds of the Aether reveal film"></video>
-        <figcaption class="cap"><span class="title">Aether, the reveal film</span><span class="lab soft">1 min 40 s &middot; silent 10 s loop</span></figcaption>
+        <figcaption class="cap"><span class="title">Aether, the reveal film</span><span class="lab soft">1 min 40 s</span></figcaption>
       </figure>
     </div>
 
@@ -131,7 +130,7 @@
     <div class="about-grid gut">
       <img class="frame" src="media/ceres-fauna.jpg" width="400" height="400" alt="A drawing of Ceres Fauna: long pale green hair, small branches for antlers, a peace sign" loading="lazy">
       <div class="about-text">
-        <p class="note">Hi. I&rsquo;m Elixir and I am the founder of <em>Aether</em>, an AI research lab contributing to the next frontier.</p>
+        <p class="note">Hi. I&rsquo;m Elixir and I am the founder of Aether, an AI research lab contributing to the next frontier.</p>
         <dl class="facts">
           <dt>Name</dt><dd>Harry Xie</dd>
           <dt>Also</dt><dd>Elixir</dd>
@@ -157,7 +156,7 @@
 
 <footer class="foot gut">
   <canvas id="hands" role="img" aria-label="Two hands reaching toward each other in halftone dots, after Michelangelo's Creation of Adam. One warm dot sits in the gap between the fingertips."></canvas>
-  <div class="foot-row lab soft"><span>&copy; 2026 Harry Xie</span><span>harryxie.me</span><a href="#top">Back to top</a></div>
+  <div class="foot-row lab soft"><span>&copy; 2026 Harry Xie</span><span class="mid">harryxie.me</span><a href="#top">Back to top</a></div>
 </footer>
 
 <script src="data.js"></script>

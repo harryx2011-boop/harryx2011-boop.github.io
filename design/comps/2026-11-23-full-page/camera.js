@@ -15,6 +15,7 @@
   var stage = document.getElementById("stage");
   var copy = document.getElementById("hero-copy");
   var wordname = document.getElementById("wordname");
+  var bar = document.getElementById("bar");
   var readout = document.getElementById("readout");
   var readoutR = document.getElementById("readout-r");
   var preset = { elev: 0.055, dist: 13, roll: -0.6, cx: 0.86, cy: 0.25, spin: -1 };
@@ -57,8 +58,10 @@
     copy.style.opacity = (1 - gone).toFixed(3);
     copy.style.transform = P.reduce ? "" : "translate3d(0," + (-48 * gone).toFixed(1) + "px,0)";
     copy.inert = gone >= 1;
-    wordname.style.opacity = (1 - gone).toFixed(3);
-    wordname.style.pointerEvents = gone >= 1 ? "none" : "";
+    var name = Math.max(1 - gone, 1 - opacity);
+    wordname.style.opacity = name.toFixed(3);
+    wordname.inert = name <= 0;
+    bar.style.setProperty("--ground", (1 - opacity).toFixed(3));
     readout.style.opacity = (1 - P.band(h, 0.86, 0.96)).toFixed(3);
     var text = preset.dist.toFixed(1);
     if (text !== shown) { shown = text; readoutR.textContent = text; }
