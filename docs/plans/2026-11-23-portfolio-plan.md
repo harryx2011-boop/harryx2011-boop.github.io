@@ -88,6 +88,8 @@ Defaults taken (mine, not his words):
 
 State, 2026-11-23 19:32: R1 DONE (commit `08d75fa`). R2 DONE as a first version (`desk.css`, `desk.js`): a laptop whose dock opens three windows, the reveal film, the four Night Market renders with a picker strip, and Tidal Racing with a "Play it" link; checked on screenshots at 1440 and 390 px, each window opened. R3 DONE: the 20 points are a section of `~/.claude/reference/ui-anti-vibe.md` and step 0 of `~/.claude/reference/design-outline.md` loads the file first. The page was then counted against the 20 points: the italic word in the hero sentence and the dot separators were removed; the ASCII hole and halftone hands (his own picks) are the two that remain. A design review by a second agent gave 14 findings; the 10 that still applied after R1 are fixed (commit `de7bfa7`).
 
+Review, 2026-11-24: a design review (13 findings) and a real-input test in the cloud box (9 failures of 101 checks) were run on version 5; the fixes are in and the harness passes 131 of 131. Three findings are Harry's own picks and wait for him: the coastline video, the text of about.txt and the Terminal, the computer's size.
+
 Open after this change: Harry has not seen versions 2 to 4 of the demo. The laptop is my reading of "like enigma but modern, mac os clean liquid like"; I did not open the Enigma project to compare. Windows cannot be dragged, and the three window buttons are drawn but do nothing. The slow-motion motion check was not run (a game was running on the PC).
 
 ## Change request 2 (Harry, 2026-11-24, after version 4 of the demo)
@@ -122,7 +124,7 @@ State, 2026-11-24: C1 DONE. C2 DONE as a first version (11 small files: `crt-eng
 
 He picked scene A, Windowsill, and asked for a bigger computer (2026-11-24: "window sill - make the pc bigger"): the rig is now up to 1480 px wide, capped at 135% of the viewport height. He confirmed "Yes, hands only" for the footer.
 
-Open after this change: Real drag, touch and keyboard use of the OS were not exercised in a browser by hand. The phone screen of the computer is about 250 px wide; a larger one needs a portrait scene. Next: his review of version 5, then step 4, the Next.js build.
+Open after this change: A real phone and Safari or Firefox were not tried (touch was emulated in Chrome). The phone screen of the computer is about 250 px wide; a larger one needs a portrait scene. Next: his review of version 5, then step 4, the Next.js build.
 
 ## Out of scope
 

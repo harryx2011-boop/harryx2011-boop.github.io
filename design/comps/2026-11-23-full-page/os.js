@@ -43,13 +43,17 @@
       wins.forEach(function (w) { if (w.ctl && w.ctl.update) w.ctl.update(!w.min && inView); });
     }
 
+    /* the box a window shows now: clamped to the desktop for the style only, so a resize and back keeps the size it had */
+    function fit(w, d) {
+      var ww = Math.min(w.w, d.w), hh = Math.min(w.h, d.h);
+      return { w: ww, h: hh, x: clamp(w.x, 0, d.w - ww), y: clamp(w.y, 0, d.h - hh) };
+    }
+
     function sync() {
       var d = deskSize();
       wins.forEach(function (w) {
-        w.w = Math.min(w.w, d.w); w.h = Math.min(w.h, d.h);
-        w.x = clamp(w.x, 0, d.w - w.w); w.y = clamp(w.y, 0, d.h - w.h);
-        var s = w.el.style;
-        s.zIndex = w.z; s.left = w.x + "px"; s.top = w.y + "px"; s.width = w.w + "px"; s.height = w.h + "px";
+        var f = fit(w, d), s = w.el.style;
+        s.zIndex = w.z; s.left = f.x + "px"; s.top = f.y + "px"; s.width = f.w + "px"; s.height = f.h + "px";
         w.el.classList.toggle("is-active", w === focused);
         w.el.classList.toggle("is-max", w.max);
         w.el.hidden = w.min; w.el.inert = w.min;
@@ -131,8 +135,8 @@
       var st = null;
       handle.addEventListener("pointerdown", function (e) {
         if (narrow || w.max || st || e.button !== 0 || e.target.closest("button")) return;
-        var d = deskSize();
-        st = { id: e.pointerId, sx: e.clientX, sy: e.clientY, x: w.x, y: w.y, mx: d.w - w.w, my: d.h - w.h, dx: 0, dy: 0 };
+        var d = deskSize(), f = fit(w, d);
+        st = { id: e.pointerId, sx: e.clientX, sy: e.clientY, x: f.x, y: f.y, mx: d.w - f.w, my: d.h - f.h, dx: 0, dy: 0 };
         handle.setPointerCapture(e.pointerId); w.el.classList.add("is-drag");
       });
       handle.addEventListener("pointermove", function (e) {
@@ -163,13 +167,14 @@
       if (n !== narrow) { narrow = n; root.classList.toggle("is-narrow", n); }
       sync();
     }
-    if ("ResizeObserver" in window) new ResizeObserver(measure).observe(root);
+    if ("ResizeObserver" in window) { var ro = new ResizeObserver(measure); ro.observe(root); ro.observe(layer); }
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (en) { inView = en[0].isIntersecting; notify(); }, { threshold: 0.15 }).observe(host);
     }
     document.addEventListener("visibilitychange", function () { inView = !document.hidden; notify(); });
     narrow = root.clientWidth > 0 && root.clientWidth < NARROW_BELOW; root.classList.toggle("is-narrow", narrow);
-    open("film", false);
+    /* a wide screen opens the film; a narrow one starts on the desktop so the icons are the first thing in reach */
+    if (!narrow) open("film", false);
     return { open: open };
   }
 

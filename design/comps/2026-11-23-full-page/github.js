@@ -3,10 +3,9 @@
   var el = document.getElementById("activity");
   if (!data || !el) return;
 
-  var WEEKS = 16;
   var GLYPHS = ".:-=+*#%@";
   var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  var weeks = data.weeks.slice(-WEEKS);
+  var weeks = data.weeks;
   var first = new Date(data.end + "T00:00:00Z");
   var days = weeks.reduce(function (n, w) { return n + w.length; }, 0);
   first.setUTCDate(first.getUTCDate() - (days - 1));
@@ -37,4 +36,10 @@
   el.setAttribute("aria-label", total + " contributions between " + fmt(first) + " and " + fmt(last) + " " + last.getUTCFullYear() + ", drawn as one character per day");
   var stat = document.getElementById("stat-contrib");
   if (stat) stat.textContent = String(data.total);
+
+  /* the year is wider than a phone: its box scrolls sideways and starts at the newest week */
+  var box = el.parentElement;
+  function toNewest() { box.scrollLeft = box.scrollWidth; }
+  toNewest();
+  window.addEventListener("load", toNewest);
 })();

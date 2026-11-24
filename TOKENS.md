@@ -61,7 +61,7 @@ Never Inter, Geist, Space Grotesk or JetBrains Mono for display.
 - Side gutter `--pad`: 48 px, 16 px under 720 px. Header `--bar`: 96 px, 72 px under 720 px (measured).
 - Between chapters `--gap-chapter`: `clamp(96px, 14vw, 192px)`.
 - Radius: 999 px for pills only. Media frames have none. The Vulcan and Clawd cards share one radius, 3.6% of the card width (baked into the Vulcan file).
-- Touch targets: 44 px or more.
+- Touch targets: 44 px or more. Inside the computer's screen on a phone: title bar and its buttons 44 px, taskbar 48 px, every app control 44 px (measured with real touch events, 2026-11-24).
 
 ## Motion
 
@@ -70,7 +70,7 @@ Never Inter, Geist, Space Grotesk or JetBrains Mono for display.
 | `--ease-out` | `cubic-bezier(0.23, 1, 0.32, 1)` | entrances, press |
 | `--ease-hover` | `cubic-bezier(0.5, 1, 0.89, 1)`, 300 ms | hover colour and opacity (measured) |
 | press | `scale(0.97)`, 160 ms | every pressable control |
-| letters | 700 ms move, 500 ms fade, 35 ms stagger | chapter words, once per visit |
+| letters | 700 ms move, 500 ms fade, 35 ms stagger | the Contact word only, once per visit |
 | scenes | scrubbed by scroll, no duration | fall, mark, reel, pull-back |
 
 Only `transform`, `opacity` and `clip-path` move. Hover effects sit behind `(hover: hover) and (pointer: fine)`. Reduced motion: the camera holds still, scenes show their final state, fades stay.

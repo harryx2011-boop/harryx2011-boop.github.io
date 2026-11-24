@@ -8,6 +8,13 @@
   var lockup = document.querySelector(".lockup");
   var THROW = 150, TURN = 26;
 
+  /* half the wordmark plus half the gap: measured at load and on resize, not every scroll frame (reading it there forces a layout) */
+  var room = 0;
+  function measureRoom() { room = (wordmark.offsetWidth + parseFloat(getComputedStyle(lockup).columnGap || 0)) / 2; P.invalidate(); }
+  measureRoom();
+  window.addEventListener("resize", measureRoom);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureRoom);
+
   P.scene(function (tracks) {
     var p = P.reduce ? 1 : tracks.aether.p;
     faces.forEach(function (face, i) {
@@ -21,7 +28,6 @@
     var w = P.easeOut(P.band(p, 0.46, 0.68));
     wordmark.style.clipPath = "inset(-10% " + ((1 - w) * 100).toFixed(1) + "% -20% 0)";
     wordmark.style.transform = "translate3d(" + (-28 * (1 - w)).toFixed(1) + "px,0,0)";
-    var room = (wordmark.offsetWidth + parseFloat(getComputedStyle(lockup).columnGap || 0)) / 2;
     lockup.style.transform = "translate3d(" + ((1 - w) * room).toFixed(1) + "px,0,0)";
   });
 })();

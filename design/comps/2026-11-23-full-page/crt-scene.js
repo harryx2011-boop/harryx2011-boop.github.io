@@ -14,11 +14,24 @@
     }
   }
 
+  /* how many pixel rows of plants hang down over the top of the glass, counted from the top edge until a clear stretch.
+     The desktop keeps its windows and icons below this so a title bar is never under a leaf. */
+  function overhang(F, m) {
+    var x0 = Math.round(m.x), x1 = Math.round(m.x + m.w), y0 = Math.round(m.y), run = 0, gap = 0;
+    for (var y = y0; y < m.y + m.h / 2 && gap <= 2; y++) {
+      var hit = false;
+      for (var x = x0; x < x1 && !hit; x++) hit = F.get(x, y) !== 0;
+      if (hit) { run = y - y0 + 1; gap = 0; } else gap++;
+    }
+    return run;
+  }
+
   function draw(el) {
     var id = el.getAttribute("data-scene") || "a", scene = sceneOf(el);
     var W = gridWidth(el), H = scene.H;
     var B = new CRT.Buf(W, H), F = new CRT.Buf(W, H);
     var m = scene.draw(B, F, W, H, CRT.rng(CRT.seedOf(id + W)));
+    var over = overhang(F, m);
     glare(F, m);
     B.flush(el.querySelector(".crt-back"));
     F.flush(el.querySelector(".crt-front"));
@@ -26,6 +39,7 @@
     s.setProperty("--w", W); s.setProperty("--h", H);
     s.setProperty("--sx", (m.x / W * 100) + "%"); s.setProperty("--sy", (m.y / H * 100) + "%");
     s.setProperty("--sw", (m.w / W * 100) + "%"); s.setProperty("--sh", (m.h / H * 100) + "%");
+    s.setProperty("--st", (over / m.h * 100) + "%");
     el.setAttribute("data-grid", W);
     el.setAttribute("data-ready", "");
   }

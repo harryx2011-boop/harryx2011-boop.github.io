@@ -9,8 +9,9 @@
   function vines(B, F, list, rnd) {
     list.forEach(function (v) { var plan = P.vine(v[0], v[1], rnd); P.paintVine(B, plan, true); P.paintVine(F, plan); });
   }
-  function strands(B, F, xs, y, rnd) {
-    xs.forEach(function (x) { var plan = P.strand(x, y, rnd.int(18, 44), rnd); P.paintVine(B, plan, true); P.paintVine(F, plan); });
+  /* lo and hi bound the strand length in grid pixels; the windowsill keeps them short so nothing hangs far down the glass */
+  function strands(B, F, xs, y, rnd, lo, hi) {
+    xs.forEach(function (x) { var plan = P.strand(x, y, rnd.int(lo || 18, hi || 44), rnd); P.paintVine(B, plan, true); P.paintVine(F, plan); });
   }
   function topMoss(B, cx, top, rnd) {
     var lit = CRT.boost;
@@ -64,7 +65,7 @@
         [[[W + 6, 214], [W - 28, 220], [cx + 112, 210], [cx + 102, 200]], { thick: 2, leaf: 13, gap: 8, base: 0 }],
         [[[cx - 112, 206], [cx - 76, 212], [cx - 36, 205], [cx + 6, 213]], { thick: 2, leaf: 11, gap: 7, base: 0 }]
       ], rnd);
-      strands(B, F, [cx - 70, cx - 8, cx + 14, cx + 60, cx + 82], top - 2, rnd);
+      strands(B, F, [cx - 70, cx - 8, cx + 14, cx + 60, cx + 82], top - 2, rnd, 12, 22);
       onKeys(F, cx, 197, rnd, 7);
       E.edgeLeaves(F, W, H, rnd);
       return m;
