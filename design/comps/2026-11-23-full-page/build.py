@@ -5,7 +5,7 @@ import json, os, shutil, sys
 
 comp, refs, contrib, out = sys.argv[1:5]
 os.makedirs(out + '/media', exist_ok=True)
-for name in ['page.html', 'base.css', 'chapters.css', 'hole.js', 'engine.js', 'camera.js', 'chapters.js', 'github.js', 'hands.js', 'ui.js']:
+for name in ['page.html', 'base.css', 'chapters.css', 'desk.css', 'hole.js', 'engine.js', 'camera.js', 'chapters.js', 'desk.js', 'github.js', 'hands.js', 'ui.js']:
     shutil.copy(comp + '/' + name, out + '/' + name)
 page = open(comp + '/page.html', encoding='utf-8').read()
 import re

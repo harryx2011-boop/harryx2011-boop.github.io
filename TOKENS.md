@@ -9,7 +9,8 @@ The only colours, sizes, radii and easings the site may use. Source of truth in 
 | `--void` | `#070708` | page ground, pill fill |
 | `--panel` | `#0f0f11` | the one raised surface (the Clawd card) |
 | `--line` | `#26252a` | 1 px frame and divider lines |
-| `--faint` | `#3b393f` | empty days in the activity grid |
+| `--faint` | `#3b393f` | empty days in the activity grid, window buttons |
+| `--bezel`, `--metal` | `#151517`, `#2c2c31` | the laptop frame and base |
 | `--ink` | `#ece8e0` | all text, pill borders |
 | `--dim` | `#918d86` | secondary text |
 | `--furnace-1..4` | `#9a2c12`, `#e2541c`, `#ffab45`, `#fff3dc` | the hole, the activity grid, the dot between the hands. Focus rings are `--ink` |

@@ -16,14 +16,16 @@ The page is one fall into a black hole drawn in characters, and the work is the 
 - The Aether mark keeps its own blue everywhere (Harry: "Keep the blue everywhere"). The blue banner runs edge to edge, so the Aether chapter ends as the one cold band on a warm page.
 - Type: Newsreader light for the sentence and the huge italic chapter words; IBM Plex Mono for every label, in one size.
 - Media frames are square-cornered with a 1 px line. Only navigation and buttons are pills.
-- Each chapter has one pinned scene at most: the fall (hero), the mark assembling from four faces (Aether), the four Night Market renders wiping through one frame (Work), the pull-back (Contact).
+- Each chapter has one pinned scene at most: the fall (hero), the mark assembling from four faces (Aether), the pull-back (Contact).
+- Work lives in one laptop (Harry, 2026-11-23: "add a computer mockup ... like enigma but modern, mac os clean liquid like"). Its screen is a small desktop on the Aether blue; a glass menu bar and dock; the dock opens one window at a time. Glass is used only inside this screen.
+- Keep it simple (Harry, same message). Count the 20 slop indicators in `~/.claude/reference/ui-anti-vibe.md` before showing a version: the ASCII hole and the halftone hands are the two this page spends; no italic word in a headline, no dot separators.
 
 ## Page order
 
 1. Hero: the sentence, "Enter Aether", a distance readout that counts down during the fall.
 2. Aether: the mark assembles, the wordmark, the coastline banner, the blue banner.
-3. Work: two films as silent 10 s loops, Night Market renders, Tidal Racing water.
-4. GitHub: profile (the Ceres Fauna picture, Elixir, bio, counts), activity in characters, the Vulcan card and Clawd side by side.
+3. Work: the laptop. Windows: the reveal film (silent 10 s loop), the four Night Market renders, Tidal Racing.
+4. GitHub: profile (the Ceres Fauna picture, Elixir, bio, counts) and activity in characters.
 5. About: the picture again and the note in his words.
 6. Contact: GitHub and Discord with their logos, over the hole.
 7. Footer: the two hands in halftone dots, one warm dot in the gap.

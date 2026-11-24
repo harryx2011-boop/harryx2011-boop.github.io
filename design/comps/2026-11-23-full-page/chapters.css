@@ -19,18 +19,7 @@
 }
 
 /* Work */
-.films { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--s-3); row-gap: var(--s-6); align-items: end; }
-.film { display: grid; gap: var(--s-2); }
-.film.a { grid-column: 1 / span 8; }
-.film video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
-.tidal { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--s-3); row-gap: var(--s-3); align-items: end; margin-top: var(--gap-chapter); }
-.tidal-text { grid-column: 1 / span 4; display: grid; gap: var(--s-3); justify-items: start; }
-.tidal-text p { font-family: var(--mono); font-size: var(--t-mono); line-height: 1.6; color: var(--dim); max-width: 34ch; }
-.tidal figure { grid-column: 5 / span 8; }
-.tidal img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
 @media (max-width: 720px) {
-  .film.a, .tidal-text, .tidal figure { grid-column: 1 / -1; }
-  .tidal figure { order: -1; }
 }
 
 /* GitHub */
