@@ -161,6 +161,7 @@ main, .foot { position: relative; z-index: 1; }
 .frame { border: 1px solid var(--line); background: var(--void); }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero { height: 200svh; }
   .js .split span { transform: none; transition: opacity 300ms ease; }
   .pill { transition: background-color 300ms var(--ease-hover), color 300ms var(--ease-hover); }
   .pill:active { transform: none; }
