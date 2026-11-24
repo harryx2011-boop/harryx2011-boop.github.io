@@ -1,5 +1,7 @@
 /* Aether: the mark assembles in a pinned scene, then the two profile banners */
-.aether .track { height: 240svh; }
+/* the track starts 75svh before the section, under the hero's released pin, so a beat of black (about 30% of a viewport) separates the hole going out from the first face moving; flow-root keeps the section box, and with it the nav marker, where it was */
+.chapter.aether { padding-top: 0; display: flow-root; }
+.aether .track { height: 240svh; margin-top: -75svh; }
 .aether .pin { display: grid; place-content: center; justify-items: center; gap: var(--s-5); }
 .jump { position: absolute; top: 105svh; }
 .lockup { display: flex; align-items: center; gap: clamp(16px, 2.8vw, 40px); }

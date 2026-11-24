@@ -18,6 +18,18 @@
   var bar = document.getElementById("bar");
   var preset = { elev: 0.055, dist: 13, roll: -0.6, cx: 0.86, cy: 0.25, spin: -1 };
 
+  /* scroll past the Contact pin's end at which its heading reaches the header band (zoneA) and has left the screen (zoneB); measured at load and on resize */
+  var contactHead = document.querySelector(".contact-copy .big"), contactPin = document.querySelector("#contact .pin");
+  var zoneA = 0, zoneB = 0;
+  function measureZone() {
+    var h = contactHead.getBoundingClientRect(), top = contactPin.getBoundingClientRect().top;
+    zoneA = h.top - top - bar.offsetHeight; zoneB = h.bottom - top;
+    P.invalidate();
+  }
+  measureZone();
+  window.addEventListener("resize", measureZone);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureZone);
+
   var hole = window.createHole(stage, {
     preset: preset,
     palette: { dop: 0.3, ramp: new Float32Array([1, 2, 3, 4].reduce(function (a, i) { return a.concat(P.rgb("--furnace-" + i)); }, [])) },
@@ -56,6 +68,11 @@
     copy.style.transform = P.reduce ? "" : "translate3d(0," + (-48 * gone).toFixed(1) + "px,0)";
     copy.inert = gone >= 1;
     var name = Math.max(1 - gone, 1 - opacity);
+    if (tracks.contact.exit > 0) {
+      /* the name stays out while the Contact heading is inside the header's band */
+      var past = window.scrollY - tracks.contact.top - tracks.contact.span;
+      name *= 1 - P.band(past, zoneA - 40, zoneA) * (1 - P.band(past, zoneB, zoneB + 40));
+    }
     wordname.style.opacity = name.toFixed(3);
     wordname.inert = name <= 0;
     bar.style.setProperty("--ground", (1 - opacity).toFixed(3));

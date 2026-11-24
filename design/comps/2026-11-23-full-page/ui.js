@@ -30,7 +30,7 @@
     });
 
     /* the nav shows which chapter is on screen */
-    var links = document.querySelectorAll(".navpill a");
+    var links = document.querySelectorAll(".navpill a, .to-contact");
     var here = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;

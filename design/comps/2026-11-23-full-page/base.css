@@ -66,6 +66,7 @@ a { color: inherit; }
   transition: transform 160ms var(--ease-out), background-color 300ms var(--ease-hover), color 300ms var(--ease-hover);
 }
 .pill:active { transform: scale(0.97); }
+.pill[aria-current="true"] { background: var(--ink); color: var(--void); }
 @media (hover: hover) and (pointer: fine) {
   .pill:hover { background: var(--ink); color: var(--void); }
 }
