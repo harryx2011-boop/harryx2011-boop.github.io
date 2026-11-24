@@ -90,6 +90,38 @@ State, 2026-11-23 19:32: R1 DONE (commit `08d75fa`). R2 DONE as a first version 
 
 Open after this change: Harry has not seen versions 2 to 4 of the demo. The laptop is my reading of "like enigma but modern, mac os clean liquid like"; I did not open the Enigma project to compare. Windows cannot be dragged, and the three window buttons are drawn but do nothing. The slow-motion motion check was not run (a game was running on the PC).
 
+## Change request 2 (Harry, 2026-11-24, after version 4 of the demo)
+
+His words: "ur addigint oo many eyebrow lables and unnecessary stuff - load ui anti vibe", with two reels by Charles Liu: "20 AI Design Slop Indicators" (already in the rules) and "20 Ways to Unslop Your AI Designs" (new: delete filler badges, drop redundant labels, mono only where needed, remove embellishments, make headlines specific, and 15 more). Version 4 carried 3 heading sub-labels and 14 mono labels.
+
+His 12 answers (AskUserQuestion, 2026-11-24):
+
+| # | Question | Answer |
+|---|---|---|
+| 1 | The 3 sub-labels beside the chapter headings | Remove all 3 |
+| 2 | Where mono type may appear | Only ASCII art and numbers |
+| 3 | Hero hint ("or scroll to fall in") and distance readout | Remove both |
+| 4 | Captions and the footer line | Keep none of the 3 captions; no footer option picked, so the footer line is removed too (my reading of "anything not picked is removed") |
+| 5 | Blue band in the Aether chapter | "remove the band, keep the ocean ascii background" |
+| 6 | GitHub and About repeat each other | Merge into one chapter |
+| 7 | The laptop | "remake as a windows like os - make it like enigma's os, pixelated and cryptic. (change the laptop to a old computer ship and make it detailed on the outisde and add foliage covering it"; also "remove the tidal racing from the latop and make the laptop more advanced, like enigma's os" |
+| 8 | Contact rows | Logo, name, handle |
+| 9 | "old computer ship" | An old CRT desktop computer, overgrown |
+| 10 | How the computer is drawn | Pixel art drawn in code |
+| 11 | What the OS holds | The film, the renders, a notes file, a terminal window. Tidal Racing leaves the page |
+| 12 | The label rule for every project | Headings stand alone; at most 2 small labels per screen |
+
+Confirmed later the same day: the OS keeps the pixel look but uses plain words ("Pixel look, plain words"); he does not like cryptic statements.
+
+Work order:
+- C1. Remove the labels, hint, readout, captions, blue band and footer line; nav and buttons move from mono capitals to Newsreader. Merge GitHub and About into one About chapter (picture once, the name Elixir, the activity grid, 569 contributions, 12 public repositories, Follow). Contact rows become logo, name, handle; the Discord row copies the handle and shows "Copied" for 2 s.
+- C2. Work: an overgrown CRT computer drawn as pixel art on a canvas (`crt-*.js`), its screen running a small Windows XP style desktop in plain JS (`os*.js`): draggable windows with working minimize, maximize and close, a taskbar with a real clock, four apps from one registry (Reveal film, Night Market, about.txt, Terminal). Three scene candidates for Harry to pick: A Windowsill, B Forest floor, C Root-bound.
+- C3. Version 5 of the whole-page demo on the same artifact link; the three scenes on a candidates page.
+
+State, 2026-11-24: C1 DONE. C2 DONE as a first version (11 small files: `crt-engine.js`, `crt-plants.js`, `crt-computer.js`, `crt-ground.js`, `crt-scenes.js`, `crt-scene.js`, `os-icons.js`, `os-apps.js`, `os.js`, `crt.css`, `crt-os.css`; built by a Sonnet 5.5 agent in three critique rounds, then checked by the controller on screenshots at 1440 and 390 px). C3 DONE: version 5 on the demo link, candidates at https://claude.ai/code/artifact/e2ea7a6d-5bf2-413b-8404-4a59c90ab52b.
+
+Open after this change: Harry picks scene A, B or C (the demo shows A). Real drag, touch and keyboard use of the OS were not exercised in a browser by hand. The phone screen of the computer is about 250 px wide; a larger one needs a portrait scene. The footer line was removed on my reading of his answer; one line restores it. Next: his review of version 5, then step 4, the Next.js build.
+
 ## Out of scope
 
 - A page per project, and any Aether product chapter.

@@ -11,24 +11,24 @@ The page is one fall into a black hole drawn in characters, and the work is the 
 ## Rules that follow from it
 
 - One fixed stage holds the hole behind the whole page. Chapters are transparent and scroll over it; the stage fades to nothing while the chapters are read.
-- The hero is Harry's own sentence in a left column. The disk cuts the screen on a diagonal and the words sit in the quiet corner it leaves. No text sits on glyphs; fixed chrome (the nav, the readout) sits on void.
+- The hero is Harry's own sentence in a left column and one button. The disk cuts the screen on a diagonal and the words sit in the calm corner it leaves. No text sits on glyphs; the nav sits on void.
 - Furnace (deep red, orange, amber, white-hot) belongs to the hole and to data drawn in characters (the GitHub activity grid, the one dot between the two hands). It is never a button or link colour.
-- The Aether mark keeps its own blue everywhere (Harry: "Keep the blue everywhere"). The blue banner runs edge to edge, so the Aether chapter ends as the one cold band on a warm page.
-- Type: Newsreader light for the sentence and the huge italic chapter words; IBM Plex Mono for every label, in one size.
+- The Aether mark keeps its own blue everywhere (Harry: "Keep the blue everywhere"). The Aether chapter is the mark, the wordmark and the coastline video; the blue band is gone (Harry, 2026-11-24: "remove the band, keep the ocean ascii background").
+- Type: Newsreader for everything a visitor reads, light for the sentence and the huge italic chapter words, regular for nav, buttons and the few fact lines. IBM Plex Mono only for the glyph field, the activity grid and numbers (Harry, 2026-11-24: mono "only art and numbers"). Pixelify Sans only inside the old computer's screen.
+- Headings stand alone (Harry, 2026-11-24): no label above, beside or below a chapter word, no captions under media, no hint beside a button, no readout, no footer line. At most 2 small labels per screen; the two on this page are the units of the two GitHub counts.
 - Media frames are square-cornered with a 1 px line. Only navigation and buttons are pills.
 - Each chapter has one pinned scene at most: the fall (hero), the mark assembling from four faces (Aether), the pull-back (Contact).
-- Work lives in one laptop (Harry, 2026-11-23: "add a computer mockup ... like enigma but modern, mac os clean liquid like"). Its screen is a small desktop on the Aether blue; a glass menu bar and dock; the dock opens one window at a time. Glass is used only inside this screen.
-- Keep it simple (Harry, same message). Count the 20 slop indicators in `~/.claude/reference/ui-anti-vibe.md` before showing a version: the ASCII hole and the halftone hands are the two this page spends; no italic word in a headline, no dot separators.
+- Work lives in one old CRT computer the forest took back (Harry, 2026-11-24: "remake as a windows like os - make it like enigma's os, pixelated ... change the laptop to a old computer ... detailed on the outisde and add foliage covering it"). Concept: an abandoned workstation, and its screen is the one warm, live thing left showing the work. The computer and plants are pixel art drawn on a canvas, flat tone clusters, no dithering; the screen runs a small Windows XP style desktop with working windows (drag, minimize, maximize, close), a taskbar with a real clock, and four apps: Reveal film, Night Market, about.txt, Terminal. Plain words only, nothing cryptic (his pick: "Pixel look, plain words"). Three scene candidates: A Windowsill, B Forest floor, C Root-bound; he picks one.
+- Keep it simple (Harry, 2026-11-23). Count the 20 slop signs in the `anti-slop` skill before showing a version: the ASCII hole and the halftone hands are the two this page spends; no italic word in a headline, no dot separators, no eyebrow or sub-label.
 
 ## Page order
 
-1. Hero: the sentence, "Enter Aether", a distance readout that counts down during the fall.
-2. Aether: the mark assembles, the wordmark, the coastline banner, the blue banner.
-3. Work: the laptop. Windows: the reveal film (silent 10 s loop), the four Night Market renders, Tidal Racing.
-4. GitHub: profile (the Ceres Fauna picture, Elixir, bio, counts) and activity in characters.
-5. About: the picture again and the note in his words.
-6. Contact: GitHub and Discord with their logos, over the hole.
-7. Footer: the two hands in halftone dots, one warm dot in the gap.
+1. Hero: the sentence and "Enter Aether".
+2. Aether: the mark assembles, the wordmark, the coastline video.
+3. Work: the overgrown computer. Apps: the reveal film (silent 10 s loop), the four Night Market renders, about.txt, Terminal.
+4. About: the Ceres Fauna picture once, the name Elixir, Follow on GitHub, the activity grid in characters, 569 contributions and 12 public repositories.
+5. Contact: GitHub and Discord, each a logo, a name and a handle, over the hole.
+6. Footer: the two hands in halftone dots, one warm dot in the gap. Nothing else.
 
 ## Not in the demo yet
 

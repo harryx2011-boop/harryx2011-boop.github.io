@@ -51,22 +51,21 @@
 
   /* Discord has no public profile link for a handle, so the row copies it */
   var copy = document.getElementById("copy-discord");
-  var state = document.getElementById("copy-state");
   var handle = document.getElementById("discord-handle");
   var timer = 0;
+  var name = handle.textContent;
   function say(text) {
-    state.textContent = text;
+    handle.textContent = text;
     clearTimeout(timer);
-    timer = setTimeout(function () { state.textContent = "Copy handle"; }, 2400);
+    timer = setTimeout(function () { handle.textContent = name; }, 2000);
   }
   copy.addEventListener("click", function () {
-    var text = handle.textContent;
     var fallback = function () {
+      clearTimeout(timer); handle.textContent = name;
       var range = document.createRange(); range.selectNodeContents(handle);
       var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
-      say("Selected, press Ctrl+C");
     };
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { say("Copied"); }, fallback);
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(name).then(function () { say("Copied"); }, fallback);
     else fallback();
   });
 })();

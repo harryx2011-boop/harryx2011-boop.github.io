@@ -7,30 +7,17 @@
 .gem-tile svg { width: 100%; height: 100%; overflow: visible; }
 .gem-tile .face { transform-box: fill-box; transform-origin: center; will-change: transform, opacity; }
 .wordmark { font-weight: 400; font-size: clamp(76px, 12.4vw, 178px); line-height: 1; letter-spacing: -0.02em; padding-right: 0.04em; will-change: clip-path, transform; }
-.banners { display: grid; gap: var(--s-7); }
-.banner { display: grid; gap: var(--s-2); }
 .banner video { width: 100%; aspect-ratio: 1280 / 360; object-fit: cover; }
-.cap { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-3); flex-wrap: wrap; line-height: 1.4; }
-.blueband { background: linear-gradient(var(--aether-deep), var(--aether-blue)); display: grid; justify-items: center; gap: var(--s-3); padding-top: var(--s-6); padding-bottom: var(--s-6); text-align: center; color: var(--aether-ice); }
-.gem-band { width: clamp(72px, 9vw, 120px); aspect-ratio: 1; }
-.band-line { font-weight: 400; font-size: clamp(28px, 4vw, 52px); line-height: 1.1; letter-spacing: -0.015em; text-wrap: balance; }
 @media (max-width: 720px) {
   .banner video { aspect-ratio: 2 / 1; }
 }
 
-/* Work */
-@media (max-width: 720px) {
-}
-
-/* GitHub */
-.gh-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-6); align-items: start; }
-.profile { display: grid; gap: var(--s-3); justify-items: start; }
-.profile img { width: 120px; height: 120px; }
-.profile .name { font-weight: 300; font-size: clamp(36px, 4vw, 56px); line-height: 1; letter-spacing: -0.025em; }
-.profile .bio { font-family: var(--mono); font-size: var(--t-mono); line-height: 1.6; color: var(--dim); max-width: 38ch; }
-.stats { display: grid; grid-template-columns: auto 1fr; gap: var(--s-1) var(--s-3); align-items: baseline; }
-.stats dt { font-family: var(--mono); font-size: var(--t-title); line-height: 1; font-weight: 500; font-variant-numeric: tabular-nums; text-align: right; }
-.activity { display: grid; gap: var(--s-3); justify-items: start; min-width: 0; }
+/* About: the picture and the name, then a year of GitHub activity drawn in characters with its two counts */
+.about-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--s-6); align-items: start; }
+.who { display: grid; gap: var(--s-3); justify-items: start; }
+.who img { width: 100%; max-width: 320px; aspect-ratio: 1; }
+.who .name { font-weight: 300; font-size: clamp(36px, 4vw, 56px); line-height: 1; letter-spacing: -0.025em; }
+.activity { display: grid; gap: var(--s-5); justify-items: start; min-width: 0; }
 .grid-days {
   display: grid; grid-template-rows: repeat(7, 1.5em); grid-auto-flow: column; grid-auto-columns: 1.5em;
   font-family: var(--mono); font-weight: 500; font-size: clamp(14px, 2vw, 28px); line-height: 1.5; text-align: center;
@@ -40,22 +27,12 @@
 .grid-days .h1 { color: var(--furnace-2); }
 .grid-days .h2 { color: var(--furnace-3); }
 .grid-days .h3 { color: var(--furnace-4); }
-.activity .cap { font-family: var(--mono); font-size: var(--t-mono); line-height: 1.6; color: var(--dim); max-width: 52ch; }
-@media (max-width: 720px) {
-  .gh-grid { grid-template-columns: minmax(0, 1fr); }
-}
-
-/* About */
-.about-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--s-6); align-items: start; }
-.about-grid img { width: 100%; max-width: 400px; aspect-ratio: 1; }
-.about-text { display: grid; gap: var(--s-6); }
-.note { font-weight: 300; font-size: var(--t-note); line-height: 1.25; letter-spacing: -0.015em; max-width: 24em; text-wrap: balance; }
-.facts { display: grid; grid-template-columns: minmax(7em, auto) 1fr; max-width: 40em; }
-.facts dt, .facts dd { padding: var(--s-2) 0; border-top: 1px solid var(--line); font-family: var(--mono); font-size: var(--t-mono); line-height: 1.6; }
-.facts dt { color: var(--dim); text-transform: uppercase; padding-right: var(--s-4); }
+.stats { display: grid; grid-template-columns: auto 1fr; gap: var(--s-1) var(--s-2); align-items: baseline; }
+.stats dt { font-family: var(--mono); font-size: var(--t-title); line-height: 1; font-weight: 500; font-variant-numeric: tabular-nums; text-align: right; }
+.stats dd { font-size: var(--t-label); line-height: 1.3; color: var(--dim); }
 @media (max-width: 720px) {
   .about-grid { grid-template-columns: minmax(0, 1fr); }
-  .about-grid img { max-width: 220px; }
+  .who img { max-width: 200px; }
 }
 
 /* Contact: over the hole, mirrored hero */
@@ -65,24 +42,20 @@
 .channels li:last-child { border-bottom: 1px solid var(--line); }
 .channel {
   width: 100%; min-height: 72px; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; text-decoration: none; cursor: pointer;
-  display: grid; grid-template-columns: 28px auto 1fr auto; align-items: center; gap: var(--s-2);
+  display: grid; grid-template-columns: 28px 1fr auto; align-items: center; gap: var(--s-2);
   transition: transform 160ms var(--ease-out);
 }
 .channel:active { transform: scale(0.98); }
 .channel svg { width: 28px; height: 28px; fill: currentColor; }
-.channel .go { color: var(--dim); transition: color 300ms var(--ease-hover); }
-@media (hover: hover) and (pointer: fine) { .channel:hover .go { color: var(--ink); } }
+.channel .handle { font-size: var(--t-label); line-height: 1; color: var(--dim); transition: color 300ms var(--ease-hover); }
+@media (hover: hover) and (pointer: fine) { .channel:hover .handle { color: var(--ink); } }
 @media (max-width: 720px) {
   .contact-copy { bottom: var(--s-5); }
 }
 
 /* Footer: the two hands */
-.foot { background: var(--void); padding-top: var(--s-7); padding-bottom: var(--s-4); display: grid; gap: var(--s-6); }
+.foot { background: var(--void); padding-top: var(--s-7); padding-bottom: var(--s-6); }
 #hands { width: 100%; height: auto; }
-.foot-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--s-3); }
-.foot-row a { justify-self: end; }
-@media (max-width: 720px) { .foot-row { grid-template-columns: 1fr auto; } .foot-row .mid { display: none; } }
-.foot-row a { text-decoration: none; padding: 15px 0; }
 
 @media (prefers-reduced-motion: reduce) {
   .channel:active { transform: none; }

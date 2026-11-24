@@ -1,7 +1,6 @@
 (function () {
   var data = window.CONTRIB;
   var el = document.getElementById("activity");
-  var cap = document.getElementById("activity-cap");
   if (!data || !el) return;
 
   var WEEKS = 16;
@@ -36,7 +35,6 @@
 
   var last = new Date(data.end + "T00:00:00Z");
   el.setAttribute("aria-label", total + " contributions between " + fmt(first) + " and " + fmt(last) + " " + last.getUTCFullYear() + ", drawn as one character per day");
-  cap.textContent = fmt(first) + " to " + fmt(last) + " " + last.getUTCFullYear() + ". One character is one day. A denser, hotter character means more contributions; the busiest day had " + max + ".";
   var stat = document.getElementById("stat-contrib");
   if (stat) stat.textContent = String(data.total);
 })();

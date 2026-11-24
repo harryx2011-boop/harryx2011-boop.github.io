@@ -1,9 +1,10 @@
 <title>Harry Xie Portfolio</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Pixelify+Sans:wght@400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">
 <link rel="stylesheet" href="base.css">
 <link rel="stylesheet" href="chapters.css">
-<link rel="stylesheet" href="desk.css">
+<link rel="stylesheet" href="crt.css">
+<link rel="stylesheet" href="crt-os.css">
 
 <svg class="sprite" aria-hidden="true">
   <defs>
@@ -29,8 +30,8 @@
 
 <header class="bar" id="bar">
   <a class="wordname" id="wordname" href="#top">Harry Xie</a>
-  <nav class="navpill lab" aria-label="Sections">
-    <a href="#aether">Aether</a><a href="#work">Work</a><a href="#github">GitHub</a><a href="#about">About</a>
+  <nav class="navpill" aria-label="Sections">
+    <a href="#aether">Aether</a><a href="#work">Work</a><a href="#about">About</a>
   </nav>
   <a class="pill to-contact" href="#contact">Contact</a>
   <button class="pill menu-btn" type="button" id="menu-open" aria-haspopup="dialog">Menu</button>
@@ -40,7 +41,7 @@
   <div class="drawer-in">
     <div class="drawer-top"><span class="wordname">Harry Xie</span><button class="pill" type="button" id="menu-close">Close</button></div>
     <nav class="drawer-links" aria-label="Sections">
-      <a href="#aether">Aether</a><a href="#work">Work</a><a href="#github">GitHub</a><a href="#about">About</a><a href="#contact">Contact</a>
+      <a href="#aether">Aether</a><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
     </nav>
   </div>
 </dialog>
@@ -50,9 +51,8 @@
     <div class="pin">
       <div class="hero-copy" id="hero-copy">
         <h1 class="say">Hi. I&rsquo;m Harry (or I can go by Elixir). I am the founder of <span class="mark"><svg class="gem-inline" aria-hidden="true"><use href="#gem"/></svg>Aether,</span> an AI research lab contributing to the next frontier.</h1>
-        <div class="act"><a class="pill" href="#aether">Enter Aether</a><span class="lab soft">or scroll to fall in</span></div>
+        <div class="act"><a class="pill" href="#aether">Enter Aether</a></div>
       </div>
-      <p class="readout lab soft" id="readout" aria-hidden="true"><span>Distance</span><b id="readout-r">13.0</b><span>radii</span></p>
     </div>
   </section>
 
@@ -76,96 +76,35 @@
         </div>
       </div>
     </div>
-    <div class="banners">
-      <figure class="banner gut">
-        <video class="frame" src="media/banner-coast.mp4" poster="media/banner-coast-poster.jpg" width="1280" height="360" muted loop playsinline preload="none" data-autoplay aria-label="The Aether mark and wordmark over a coastline photo, with characters shimmering across it"></video>
-        <figcaption class="cap lab soft"><span>Banner from the GitHub profile</span></figcaption>
-      </figure>
-      <figure class="banner">
-        <div class="blueband gut"><svg class="gem-band" aria-hidden="true"><use href="#gem"/></svg><p class="band-line">Building tools for the next frontier.</p><p class="lab">aether-labs.dev, coming soon</p></div>
-      </figure>
-    </div>
+    <figure class="banner gut">
+      <video class="frame" src="media/banner-coast.mp4" poster="media/banner-coast-poster.jpg" width="1280" height="360" muted loop playsinline preload="none" data-autoplay aria-label="The Aether mark and wordmark over a coastline photo, with characters shimmering across it"></video>
+    </figure>
   </section>
 
   <section class="chapter work" id="work">
-    <header class="chead gut"><h2 class="split">Work</h2><p class="lab soft">A film, four renders, a game</p></header>
-    <div class="desk gut">
-      <div class="laptop">
-        <div class="screen" id="desk">
-          <div class="menubar glass"><span class="left"><svg aria-hidden="true"><use href="#gem"/></svg><b id="desk-title">Reveal film</b></span><span class="clock" id="desk-clock"></span></div>
-
-          <article class="win on" data-win="reveal" aria-label="Aether, the reveal film">
-            <header class="titlebar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="wt">Aether, the reveal film, 1 min 40 s</span></header>
-            <div class="wbody"><video src="media/reveal-loop.mp4" poster="media/reveal-poster.jpg" width="960" height="540" muted loop playsinline preload="none" aria-label="Ten seconds of the Aether reveal film"></video></div>
-          </article>
-
-          <article class="win" data-win="market" aria-label="Night Market renders">
-            <header class="titlebar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="wt" id="market-title">Night Market, market street at 18:49</span></header>
-            <div class="wbody">
-              <img class="shot on" src="media/nm-market-1849.jpg" alt="A lantern-lit market street at dusk" loading="lazy">
-              <img class="shot" src="media/nm-plaza-1849.jpg" alt="A plaza under a cherry tree at dusk" loading="lazy">
-              <img class="shot" src="media/nm-riverside-1630.jpg" alt="A red bridge over a river in afternoon light" loading="lazy">
-              <img class="shot" src="media/nm-shrine-2030.jpg" alt="A shrine gate at night with lanterns" loading="lazy">
-              <div class="strip glass">
-                <button type="button" aria-pressed="true" aria-label="market street at 18:49"><img src="media/nm-market-1849.jpg" alt="" loading="lazy"></button>
-                <button type="button" aria-pressed="false" aria-label="plaza at 18:49"><img src="media/nm-plaza-1849.jpg" alt="" loading="lazy"></button>
-                <button type="button" aria-pressed="false" aria-label="riverside at 16:30"><img src="media/nm-riverside-1630.jpg" alt="" loading="lazy"></button>
-                <button type="button" aria-pressed="false" aria-label="shrine at 20:30"><img src="media/nm-shrine-2030.jpg" alt="" loading="lazy"></button>
-              </div>
-            </div>
-          </article>
-
-          <article class="win" data-win="tidal" aria-label="Tidal Racing">
-            <header class="titlebar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="wt">Tidal Racing</span></header>
-            <div class="wbody">
-              <img src="media/tidal-water.jpg" alt="A powerboat cutting through blue water, a harbour town behind it" loading="lazy">
-              <div class="note-bar glass"><p>A powerboat racing game that runs in the browser. The water is simulated live.</p><a class="pill" href="https://harryx2011-boop.github.io/tidal-racing/" target="_blank" rel="noopener">Play it</a></div>
-            </div>
-          </article>
-
-          <div class="dock glass" role="group" aria-label="Open a piece of work">
-            <button type="button" data-open="reveal" aria-pressed="true" aria-label="Reveal film" title="Reveal film"><img src="media/reveal-poster.jpg" alt=""></button>
-            <button type="button" data-open="market" aria-pressed="false" aria-label="Night Market" title="Night Market"><img src="media/nm-plaza-1849.jpg" alt="" loading="lazy"></button>
-            <button type="button" data-open="tidal" aria-pressed="false" aria-label="Tidal Racing" title="Tidal Racing"><img src="media/tidal-water.jpg" alt="" loading="lazy"></button>
-          </div>
-        </div>
-        <div class="laptop-base" aria-hidden="true"></div>
-      </div>
-      <p class="lab soft desk-cap">Pick a window from the dock</p>
-    </div>
-  </section>
-
-  <section class="chapter github" id="github">
-    <header class="chead gut"><h2 class="split">GitHub</h2><p class="lab soft">github.com/harryx2011-boop</p></header>
-    <div class="gh-grid gut">
-      <article class="profile">
-        <img class="frame" src="media/ceres-fauna.jpg" width="120" height="120" alt="Profile picture: a drawing of Ceres Fauna making a peace sign">
-        <h3 class="name">Elixir</h3>
-        <p class="bio">AI Researcher. Founder of Aether. Contact on Discord: @ogexr.</p>
-        <dl class="stats">
-          <dt id="stat-contrib">569</dt><dd class="lab soft">contributions in the last year</dd>
-          <dt>12</dt><dd class="lab soft">public repositories</dd>
-        </dl>
-        <a class="pill" href="https://github.com/harryx2011-boop" target="_blank" rel="noopener">Follow on GitHub</a>
-      </article>
-      <div class="activity">
-        <pre class="grid-days" id="activity" role="img" aria-label="Contribution activity"></pre>
-        <p class="cap" id="activity-cap"></p>
+    <header class="chead gut"><h2 class="split">Work</h2></header>
+    <div class="rig gut">
+      <div class="crt" id="crt" data-scene="a">
+        <canvas class="crt-back" aria-hidden="true"></canvas>
+        <div class="crt-screen" id="os" role="group" aria-label="An old computer showing Harry's work: the reveal film, the Night Market renders, a notes file and a terminal"></div>
+        <canvas class="crt-front" aria-hidden="true"></canvas>
       </div>
     </div>
   </section>
 
   <section class="chapter about" id="about">
-    <header class="chead gut"><h2 class="split">About</h2><p class="lab soft">Harry, or Elixir</p></header>
+    <header class="chead gut"><h2 class="split">About</h2></header>
     <div class="about-grid gut">
-      <img class="frame" src="media/ceres-fauna.jpg" width="400" height="400" alt="A drawing of Ceres Fauna: long pale green hair, small branches for antlers, a peace sign" loading="lazy">
-      <div class="about-text">
-        <p class="note">Hi. I&rsquo;m Elixir and I am the founder of Aether, an AI research lab contributing to the next frontier.</p>
-        <dl class="facts">
-          <dt>Name</dt><dd>Harry Xie</dd>
-          <dt>Also</dt><dd>Elixir</dd>
-          <dt>Role</dt><dd>Founder of Aether, AI researcher</dd>
-          <dt>Makes</dt><dd>Research tools, films, 3D scenes, a racing game</dd>
+      <div class="who">
+        <img class="frame" src="media/ceres-fauna.jpg" width="400" height="400" alt="Profile picture: a drawing of Ceres Fauna making a peace sign" loading="lazy">
+        <h3 class="name">Elixir</h3>
+        <a class="pill" href="https://github.com/harryx2011-boop" target="_blank" rel="noopener">Follow on GitHub</a>
+      </div>
+      <div class="activity">
+        <pre class="grid-days" id="activity" role="img" aria-label="Contribution activity"></pre>
+        <dl class="stats">
+          <dt id="stat-contrib">569</dt><dd>contributions in the last year</dd>
+          <dt>12</dt><dd>public repositories</dd>
         </dl>
       </div>
     </div>
@@ -176,8 +115,8 @@
       <div class="contact-copy">
         <h2 class="big split">Contact</h2>
         <ul class="channels">
-          <li><a class="channel" href="https://github.com/harryx2011-boop" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#logo-github"/></svg><span class="title">GitHub</span><span class="lab soft">harryx2011-boop</span><span class="lab go">Open</span></a></li>
-          <li><button class="channel" type="button" id="copy-discord"><svg aria-hidden="true"><use href="#logo-discord"/></svg><span class="title">Discord</span><span class="lab soft" id="discord-handle">@ogexr</span><span class="lab go" id="copy-state" aria-live="polite">Copy handle</span></button></li>
+          <li><a class="channel" href="https://github.com/harryx2011-boop" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#logo-github"/></svg><span class="title">GitHub</span><span class="handle">harryx2011-boop</span></a></li>
+          <li><button class="channel" type="button" id="copy-discord" aria-label="Discord, @ogexr. Copy the handle"><svg aria-hidden="true"><use href="#logo-discord"/></svg><span class="title">Discord</span><span class="handle" id="discord-handle" aria-live="polite">@ogexr</span></button></li>
         </ul>
       </div>
     </div>
@@ -186,7 +125,6 @@
 
 <footer class="foot gut">
   <canvas id="hands" role="img" aria-label="Two hands reaching toward each other in halftone dots, after Michelangelo's Creation of Adam. One warm dot sits in the gap between the fingertips."></canvas>
-  <div class="foot-row lab soft"><span>&copy; 2026 Harry Xie</span><span class="mid">harryxie.me</span><a href="#top">Back to top</a></div>
 </footer>
 
 <script src="data.js"></script>
@@ -194,7 +132,15 @@
 <script src="engine.js"></script>
 <script src="camera.js"></script>
 <script src="chapters.js"></script>
-<script src="desk.js"></script>
+<script src="crt-engine.js"></script>
+<script src="crt-plants.js"></script>
+<script src="crt-computer.js"></script>
+<script src="crt-ground.js"></script>
+<script src="crt-scenes.js"></script>
+<script src="crt-scene.js"></script>
+<script src="os-icons.js"></script>
+<script src="os-apps.js"></script>
+<script src="os.js"></script>
 <script src="github.js"></script>
 <script src="hands.js"></script>
 <script src="ui.js"></script>
