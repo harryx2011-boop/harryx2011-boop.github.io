@@ -120,7 +120,9 @@ Work order:
 
 State, 2026-11-24: C1 DONE. C2 DONE as a first version (11 small files: `crt-engine.js`, `crt-plants.js`, `crt-computer.js`, `crt-ground.js`, `crt-scenes.js`, `crt-scene.js`, `os-icons.js`, `os-apps.js`, `os.js`, `crt.css`, `crt-os.css`; built by a Sonnet 5.5 agent in three critique rounds, then checked by the controller on screenshots at 1440 and 390 px). C3 DONE: version 5 on the demo link, candidates at https://claude.ai/code/artifact/e2ea7a6d-5bf2-413b-8404-4a59c90ab52b.
 
-Open after this change: Harry picks scene A, B or C (the demo shows A). Real drag, touch and keyboard use of the OS were not exercised in a browser by hand. The phone screen of the computer is about 250 px wide; a larger one needs a portrait scene. The footer line was removed on my reading of his answer; one line restores it. Next: his review of version 5, then step 4, the Next.js build.
+He picked scene A, Windowsill, and asked for a bigger computer (2026-11-24: "window sill - make the pc bigger"): the rig is now up to 1480 px wide, capped at 135% of the viewport height. He confirmed "Yes, hands only" for the footer.
+
+Open after this change: Real drag, touch and keyboard use of the OS were not exercised in a browser by hand. The phone screen of the computer is about 250 px wide; a larger one needs a portrait scene. Next: his review of version 5, then step 4, the Next.js build.
 
 ## Out of scope
 

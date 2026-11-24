@@ -1,7 +1,7 @@
 /* Work: an old computer the forest took back. The scene is two pixel canvases around one live screen. */
 .work .rig { padding-bottom: var(--s-7); }
 .crt {
-  position: relative; width: 100%; max-width: 1120px; margin: 0 auto;
+  position: relative; width: 100%; max-width: min(1480px, 135svh); margin: 0 auto;
   aspect-ratio: var(--w, 320) / var(--h, 240);
   container-type: inline-size;
   --lp: calc(100cqw / var(--w, 320));
