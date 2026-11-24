@@ -124,7 +124,7 @@ State, 2026-11-24: C1 DONE. C2 DONE as a first version (11 small files: `crt-eng
 
 He picked scene A, Windowsill, and asked for a bigger computer (2026-11-24: "window sill - make the pc bigger"): the rig is now up to 1480 px wide, capped at 135% of the viewport height. He confirmed "Yes, hands only" for the footer.
 
-Open after this change: A real phone and Safari or Firefox were not tried (touch was emulated in Chrome). The phone screen of the computer is about 250 px wide; a larger one needs a portrait scene. Next: his review of version 5, then step 4, the Next.js build.
+Open after this change: A real phone and Safari or Firefox were not tried (touch was emulated in Chrome). The phone now gets a close-up of scene A (screen 339 px wide at 390 px, was 256); viewports between about 483 and 560 px were not looked at. Next: his review of version 5, then step 4, the Next.js build.
 
 ## Out of scope
 

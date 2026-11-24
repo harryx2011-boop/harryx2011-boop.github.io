@@ -37,10 +37,43 @@
     }
   }
 
-  /* A: front on, a wooden sill, ivy pouring from above */
+  /* A on a phone, a close-up: the monitor fills the width and the case is cropped at the sides, a short strip of sill and a few leaves under it.
+     Ivy frames the bezel and hangs from the top; the side ivy is kept only outside the glass so no leaf lies over the desktop. */
+  function closeUp(B, F, W, H, rnd) {
+    var cx = W / 2, top = 14, sy = 180, i, x, y, S = new CRT.Buf(W, H);
+    light(cx, top);
+    B.rect(0, sy, W, H - sy, C.bark2); B.rect(0, sy, W, 2, C.bark3);
+    for (i = 0; i < 10; i++) B.rect(rnd.int(0, W - 40), rnd.int(sy + 3, H - 12), rnd.int(10, 36), 1, C.bark1);
+    B.rect(0, H - 10, W, 2, C.bark3); B.rect(0, H - 8, W, 8, C.bark1);
+    backLeaves(B, cx, top - 6, rnd, 7, 40);
+    var m = K.monitor(B, cx, top, rnd);
+    K.spill(B, m);
+    topMoss(B, cx, top, rnd);
+    E.patch(B, cx - 104, top + SH - 24, 40, 24, rnd, false); E.patch(B, cx + 64, top + SH - 20, 40, 20, rnd, true);
+    [P.vine([[-6, -8], [6, 14], [-2, 50], [8, 90], [0, 130], [8, 172]], { thick: 3, leaf: 13, gap: 8, base: 0 }, rnd),
+     P.vine([[W + 6, -10], [W - 6, 12], [W + 2, 52], [W - 8, 92], [W, 132], [W - 8, 172]], { thick: 3, leaf: 13, gap: 8, base: 0 }, rnd)].forEach(function (v) {
+      P.paintVine(B, v, true); P.paintVine(S, v);
+    });
+    var g0 = Math.round(m.x) - 2, g1 = Math.round(m.x + m.w) + 2;
+    for (y = 0; y < H; y++) for (x = 0; x < W; x++) if ((x < g0 || x >= g1) && S.get(x, y)) F.put(x, y, S.get(x, y));
+    vines(B, F, [
+      [[[cx - 20, -8], [cx - 30, 6], [cx - 24, 16], [cx - 44, 24], [cx - 62, 26]], { thick: 2, leaf: 12, gap: 7, base: 0 }],
+      [[[cx + 30, -6], [cx + 36, 8], [cx + 28, 20], [cx + 50, 28], [cx + 68, 26]], { thick: 2, leaf: 12, gap: 7, base: 0 }]
+    ], rnd);
+    strands(B, F, [cx - 70, cx - 36, cx + 14, cx + 60], top - 2, rnd, 10, 18);
+    for (i = 0; i < 5; i++) {
+      var len = rnd.range(10, 14);
+      P.leaf(F, { x: rnd.range(6, W - 6), y: rnd.range(sy + 6, H - 14), len: len, wid: len * 0.6, ang: rnd.range(-0.6, 0.6) + (rnd() < 0.5 ? 0 : Math.PI), shape: rnd.pick(["oval", "ivy", "round"]), flip: rnd() < 0.5, base: 0, boost: 0 });
+    }
+    E.edgeLeaves(F, W, H, rnd);
+    return m;
+  }
+
+  /* A: front on, a wooden sill, ivy pouring from above. On a phone the grid is the close-up above. */
   CRT.scenes.a = {
-    name: "Windowsill", H: 240,
+    name: "Windowsill", H: 240, narrow: { W: 184, H: 212 },
     draw: function (B, F, W, H, rnd) {
+      if (W < 200) return closeUp(B, F, W, H, rnd);
       var cx = W / 2, top = 18; light(cx, top);
       E.sill(B, W, H, 190, 228, rnd);
       backLeaves(B, cx, top - 6, rnd, 9, 54);

@@ -3,7 +3,12 @@
   var NARROW_AT = 560, NARROW = 224;
 
   function sceneOf(el) { return CRT.scenes[el.getAttribute("data-scene")] || CRT.scenes.a; }
-  function gridWidth(el) { return el.clientWidth && el.clientWidth < NARROW_AT ? NARROW : (sceneOf(el).W || 288); }
+  /* the grid a scene draws on: a narrow container gets a smaller one, or the scene's own close-up (scene.narrow = { W, H }) */
+  function gridOf(el) {
+    var scene = sceneOf(el);
+    if (el.clientWidth && el.clientWidth < NARROW_AT) return scene.narrow || { W: NARROW, H: scene.H };
+    return { W: scene.W || 288, H: scene.H };
+  }
 
   /* a glare along the curve of the glass corner: one light arc, no texture */
   function glare(F, m) {
@@ -28,7 +33,7 @@
 
   function draw(el) {
     var id = el.getAttribute("data-scene") || "a", scene = sceneOf(el);
-    var W = gridWidth(el), H = scene.H;
+    var grid = gridOf(el), W = grid.W, H = grid.H;
     var B = new CRT.Buf(W, H), F = new CRT.Buf(W, H);
     var m = scene.draw(B, F, W, H, CRT.rng(CRT.seedOf(id + W)));
     var over = overhang(F, m);
@@ -47,7 +52,7 @@
   CRT.mount = function (el) {
     draw(el);
     if (!("ResizeObserver" in window)) return;
-    new ResizeObserver(function () { if (String(gridWidth(el)) !== el.getAttribute("data-grid")) draw(el); }).observe(el);
+    new ResizeObserver(function () { if (String(gridOf(el).W) !== el.getAttribute("data-grid")) draw(el); }).observe(el);
   };
   document.querySelectorAll(".crt").forEach(CRT.mount);
 })();
