@@ -83,9 +83,7 @@
   /* Terminal: four lines already printed, then a real prompt */
   function terminal(body) {
     var out = el("div", "app-out"), row = el("label", "app-prompt"), input = el("input", "app-input");
-    var total = window.CONTRIB && typeof window.CONTRIB.total === "number" ? window.CONTRIB.total : null;
-    var github = "12 public repositories" + (total !== null ? ", " + total + " contributions in the last year" : "");
-    var facts = { whoami: "Harry Xie, also Elixir", role: "Founder of Aether", github: github, discord: "ogexr." };
+    var facts = { whoami: "Harry Xie, also Elixir", role: "Founder of Aether", github: "harryx2011-boop", discord: "ogexr." };
     var cmds = {
       help: "help, whoami, work, contact, clear",
       whoami: facts.whoami,

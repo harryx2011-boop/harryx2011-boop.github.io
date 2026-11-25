@@ -1,0 +1,70 @@
+/* Aether: the mark assembles in a pinned scene, then the two profile banners */
+/* the track starts 75svh before the section, under the hero's released pin, so a beat of black (about 30% of a viewport) separates the hole going out from the first face moving; flow-root keeps the section box, and with it the nav marker, where it was */
+.chapter.aether { padding-top: 0; display: flow-root; }
+.aether .track { height: 240svh; margin-top: -75svh; }
+.aether .pin { display: grid; place-content: center; justify-items: center; gap: var(--s-5); }
+.jump { position: absolute; top: 105svh; }
+.lockup { display: flex; align-items: center; gap: clamp(16px, 2.8vw, 40px); }
+.gem-tile { width: clamp(84px, 14vw, 200px); aspect-ratio: 1; flex: none; }
+.gem-tile svg { width: 100%; height: 100%; overflow: visible; }
+.gem-tile .face { transform-box: fill-box; transform-origin: center; will-change: transform, opacity; }
+.wordmark { font-weight: 400; font-size: clamp(76px, 12.4vw, 178px); line-height: 1; letter-spacing: -0.02em; padding-right: 0.04em; will-change: clip-path, transform; }
+.banner video { width: 100%; aspect-ratio: 1280 / 360; object-fit: cover; }
+@media (max-width: 720px) {
+  .banner video { aspect-ratio: 2 / 1; }
+}
+
+/* About: a large picture, then the name, the interests and the Enigma eye, which opens a video */
+.about-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-7); align-items: end; }
+.portrait { width: 100%; max-width: 560px; aspect-ratio: 1; }
+.who { display: grid; gap: var(--s-6); justify-items: start; }
+.who .name { font: 300 var(--t-head) / 0.92 var(--serif); letter-spacing: -0.035em; }
+.likes { display: grid; gap: var(--s-2); }
+.likes h3 { font: 400 var(--t-title) / 1.1 var(--serif); letter-spacing: -0.015em; color: var(--dim); }
+.interests { display: grid; gap: var(--s-1); }
+.interests li { font-size: var(--t-note); line-height: 1.15; letter-spacing: -0.015em; }
+.eye-btn { width: 132px; padding: var(--s-2) 0; border: 0; background: none; cursor: pointer; transition: transform 160ms var(--ease-out); }
+.eye-btn:active { transform: scale(0.97); }
+.eye-btn svg { display: block; width: 100%; height: auto; overflow: visible; }
+.eye-white { fill: var(--ink); stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.eye-pupil { fill: var(--void); }
+.eye-glint { fill: var(--ink); }
+.reel { width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: 0; border: 0; background: var(--void); color: var(--ink); opacity: 0; transition: opacity 200ms var(--ease-out), display 200ms allow-discrete, overlay 200ms allow-discrete; }
+.reel[open] { opacity: 1; }
+@starting-style { .reel[open] { opacity: 0; } }
+.reel::backdrop { background: var(--void); }
+.reel-in { height: 100%; display: grid; place-content: center; justify-items: center; gap: var(--s-4); padding: var(--s-5) var(--gut-r) var(--s-5) var(--gut-l); }
+.reel video { width: min(100%, 142svh); max-height: 76svh; height: auto; background: var(--panel); border: 1px solid var(--line); }
+.reel-note { font-size: var(--t-title); color: var(--dim); }
+@media (max-width: 720px) {
+  .about-grid { grid-template-columns: minmax(0, 1fr); }
+  .about-grid { gap: var(--s-5); }
+  .who { gap: var(--s-5); }
+}
+
+/* Contact: over the hole, mirrored hero */
+.contact { height: 180svh; margin-top: var(--gap-chapter); }
+.contact-copy { position: absolute; left: var(--gut-l); bottom: var(--s-7); width: min(520px, 100% - 2 * var(--pad)); display: grid; gap: var(--s-5); isolation: isolate; }
+.channels li { border-top: 1px solid var(--line); }
+.channels li:last-child { border-bottom: 1px solid var(--line); }
+.channel {
+  width: 100%; min-height: 72px; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; text-decoration: none; cursor: pointer;
+  display: grid; grid-template-columns: 28px 1fr auto; align-items: center; gap: var(--s-2);
+  transition: transform 160ms var(--ease-out);
+}
+.channel:active { transform: scale(0.98); }
+.channel svg { width: 28px; height: 28px; fill: currentColor; }
+.channel .handle { font-size: var(--t-word); line-height: 1; color: var(--dim); transition: color 300ms var(--ease-hover); }
+@media (hover: hover) and (pointer: fine) { .channel:hover .handle { color: var(--ink); } }
+@media (max-width: 720px) {
+  .contact-copy { bottom: var(--s-5); }
+}
+
+/* Footer: the two hands */
+.foot { background: var(--void); padding-top: var(--s-7); padding-bottom: var(--s-6); }
+#hands { width: 100%; height: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .channel:active, .eye-btn:active { transform: none; }
+  .eye-btn { transition: none; }
+}

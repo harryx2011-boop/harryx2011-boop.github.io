@@ -98,12 +98,26 @@
       <img class="frame portrait" src="media/ceres-fauna.jpg" width="400" height="400" alt="Profile picture: a drawing of Ceres Fauna making a peace sign" loading="lazy">
       <div class="who">
         <h3 class="name">Elixir</h3>
-        <dl class="stats">
-          <dt id="stat-contrib">569</dt><dd>contributions in the last year</dd>
-          <dt>12</dt><dd>public repositories</dd>
-        </dl>
+        <div class="likes">
+          <h3>Interests</h3>
+          <ul class="interests"><li>Minecraft</li><li>Roblox</li></ul>
+        </div>
+        <button class="eye-btn" type="button" id="eye-open" aria-haspopup="dialog" aria-label="Enigma. Play the video">
+          <svg viewBox="0 0 100 60" aria-hidden="true">
+            <defs><clipPath id="eye-clip"><path d="M4 30 Q50 -6 96 30 Q50 66 4 30 Z"/></clipPath></defs>
+            <path class="eye-white" d="M4 30 Q50 -6 96 30 Q50 66 4 30 Z"/>
+            <g clip-path="url(#eye-clip)"><g id="eye-gaze"><circle class="eye-pupil" cx="50" cy="30" r="21"/><circle class="eye-glint" cx="57" cy="23" r="3.2"/></g></g>
+          </svg>
+        </button>
       </div>
     </div>
+    <dialog class="reel" id="eye-reel" aria-label="Enigma video">
+      <div class="reel-in">
+        <video id="eye-video" src="media/enigma-eye.mp4" controls playsinline preload="none"></video>
+        <p class="reel-note" id="eye-note" hidden>The video is not here yet.</p>
+        <button class="pill" type="button" id="eye-close">Close</button>
+      </div>
+    </dialog>
   </section>
 
   <section class="contact track" id="contact" data-track="contact">
@@ -138,6 +152,6 @@
 <script src="os-apps.js"></script>
 <script src="os-paint.js"></script>
 <script src="os.js"></script>
-<script src="github.js"></script>
+<script src="about.js"></script>
 <script src="hands.js"></script>
 <script src="ui.js"></script>

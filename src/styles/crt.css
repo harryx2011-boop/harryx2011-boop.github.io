@@ -1,0 +1,24 @@
+/* Work: an old computer the forest took back. The scene is two pixel canvases around one live screen. */
+.work .rig { padding-bottom: var(--s-7); }
+/* on a phone the computer runs edge to edge (the heading keeps its gutter) so the screen is as large as the width allows */
+@media (max-width: 720px) { .work .rig { padding-left: 0; padding-right: 0; } }
+/* the wide computer fills the column and stays about one screen tall; the close-up (grid 184 wide, taller than wide) is capped by height alone */
+.crt[data-grid="184"] { max-width: 84svh; }
+.crt {
+  position: relative; width: 100%; max-width: min(1480px, 146svh); margin: 0 auto;
+  aspect-ratio: var(--w, 320) / var(--h, 240);
+  container-type: inline-size;
+  --lp: calc(100cqw / var(--w, 320));
+}
+.crt canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+.crt-front { z-index: 2; pointer-events: none; }
+.crt-screen {
+  position: absolute; z-index: 1; left: var(--sx); top: var(--sy); width: var(--sw); height: var(--sh);
+  border-radius: calc(var(--lp) * 8); overflow: hidden;
+  container-type: size; background: var(--aether-navy);
+}
+/* glass: a darker rim, nothing else */
+.crt-screen::after {
+  content: ""; position: absolute; inset: 0; z-index: 50; pointer-events: none; border-radius: inherit;
+  box-shadow: inset 0 0 calc(var(--lp) * 6) calc(var(--lp) * 1) rgb(0 0 0 / 0.55);
+}

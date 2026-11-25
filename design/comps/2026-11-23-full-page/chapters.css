@@ -14,18 +14,32 @@
   .banner video { aspect-ratio: 2 / 1; }
 }
 
-/* About: the picture, then the name with its two counts */
-.about-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--s-6); align-items: start; }
-.portrait { width: 100%; max-width: 320px; aspect-ratio: 1; }
-.who { display: grid; gap: var(--s-5); justify-items: start; align-content: end; align-self: end; }
-.who .name { font: 400 var(--t-title) / 1.1 var(--serif); letter-spacing: -0.015em; }
-.stats { display: grid; grid-template-columns: auto 1fr; gap: var(--s-1) var(--s-2); align-items: baseline; }
-.stats dt { font-family: var(--mono); font-size: var(--t-title); line-height: 1; font-weight: 500; font-variant-numeric: tabular-nums; text-align: right; }
-.stats dd { font-size: var(--t-word); line-height: 1.3; color: var(--dim); }
+/* About: a large picture, then the name, the interests and the Enigma eye, which opens a video */
+.about-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-7); align-items: end; }
+.portrait { width: 100%; max-width: 560px; aspect-ratio: 1; }
+.who { display: grid; gap: var(--s-6); justify-items: start; }
+.who .name { font: 300 var(--t-head) / 0.92 var(--serif); letter-spacing: -0.035em; }
+.likes { display: grid; gap: var(--s-2); }
+.likes h3 { font: 400 var(--t-title) / 1.1 var(--serif); letter-spacing: -0.015em; color: var(--dim); }
+.interests { display: grid; gap: var(--s-1); }
+.interests li { font-size: var(--t-note); line-height: 1.15; letter-spacing: -0.015em; }
+.eye-btn { width: 132px; padding: var(--s-2) 0; border: 0; background: none; cursor: pointer; transition: transform 160ms var(--ease-out); }
+.eye-btn:active { transform: scale(0.97); }
+.eye-btn svg { display: block; width: 100%; height: auto; overflow: visible; }
+.eye-white { fill: var(--ink); stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.eye-pupil { fill: var(--void); }
+.eye-glint { fill: var(--ink); }
+.reel { width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: 0; border: 0; background: var(--void); color: var(--ink); opacity: 0; transition: opacity 200ms var(--ease-out), display 200ms allow-discrete, overlay 200ms allow-discrete; }
+.reel[open] { opacity: 1; }
+@starting-style { .reel[open] { opacity: 0; } }
+.reel::backdrop { background: var(--void); }
+.reel-in { height: 100%; display: grid; place-content: center; justify-items: center; gap: var(--s-4); padding: var(--s-5) var(--gut-r) var(--s-5) var(--gut-l); }
+.reel video { width: min(100%, 142svh); max-height: 76svh; height: auto; background: var(--panel); border: 1px solid var(--line); }
+.reel-note { font-size: var(--t-title); color: var(--dim); }
 @media (max-width: 720px) {
   .about-grid { grid-template-columns: minmax(0, 1fr); }
-  .portrait { max-width: 200px; }
-  .who { align-self: start; }
+  .about-grid { gap: var(--s-5); }
+  .who { gap: var(--s-5); }
 }
 
 /* Contact: over the hole, mirrored hero */
@@ -51,5 +65,6 @@
 #hands { width: 100%; height: auto; }
 
 @media (prefers-reduced-motion: reduce) {
-  .channel:active { transform: none; }
+  .channel:active, .eye-btn:active { transform: none; }
+  .eye-btn { transition: none; }
 }

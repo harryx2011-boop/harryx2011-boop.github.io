@@ -126,6 +126,22 @@ He picked scene A, Windowsill, and asked for a bigger computer (2026-11-24: "win
 
 Open after this change: A real phone and Safari or Firefox were not tried (touch was emulated in Chrome). The phone now gets a close-up of scene A (screen 339 px wide at 390 px, was 256); viewports between about 483 and 560 px were not looked at. Next: his review of version 5, then step 4, the Next.js build.
 
+## Change request 3 (Harry, 2026-11-25, after version 10)
+
+His words: "remove this heatmap" (with a picture of the activity grid); "for discord its ogexr. <- the dot matters"; "make the computer bigger horizontally and add more playgroud stuff like window sare draggable, resizable, also make sure the reveal film doesnt open its just a blank desktop until one interacts with it. some sentences are hard to read so audit the font and make sure eveyrthtings all good". Earlier the same day he answered: Firefox and Safari checks "Box engines only" (no real phone); build "As far as it goes".
+
+DONE in demo versions 11 and 12 (commits `bf15e5d`, `0dae1bd`): see `context.md`, log entry 2026-11-25. He approved version 11: "Good, start the Next.js build".
+
+## Change request 4 (Harry, 2026-11-25, after version 12)
+
+His words: "make the about section bigger - my pfp should be bigger and remvoe the contributioons and repo data - add a interests section and list Minecraft, Roblox, and add a Enigma Eye that when clicked - opens a video ill have a session make".
+
+DONE in demo version 13: picture up to 560 px, the name Elixir at chapter size, an Interests heading with the two names, the Enigma eye (the almond, pupil and glint from Enigma's own `Eye.tsx`; the pupil follows the pointer, off with reduced motion) as a button that opens a full-screen dialog playing `media/enigma-eye.mp4`. The Terminal's `github` line is now the handle, with no numbers. My choices, not his words: the eye sits under the interests with no visible label; the dialog says "The video is not here yet." while the file is missing. Not reviewed by Harry yet.
+
+## Steps 4 and 5, state 2026-11-25
+
+Step 4 DONE (not pushed): scaffold in the repo root, `npx tsc --noEmit` exit 0, `npm run build` exit 0, `out/index.html` written, 32 of 32 local checks against the built site in Edge and WebKit. The scripts still run from `public/legacy/` (see `context.md`). `harry-ui` was searched (14 parts: pills, rows, panels, toolbars for app screens); none is a page header, a link pill or a chapter frame, so the demo's own markup and styles were ported as they are. Step 5 HALF: `.github/workflows/pages.yml` is written; switching Pages to `build_type: workflow`, committing `public/media/` and the first push wait for Harry. Next: step 6, port `hole.js` and `camera.js` to pure rules with unit tests plus a thin WebGL wrapper, then drop them from the legacy list.
+
 ## Out of scope
 
 - A page per project, and any Aether product chapter.

@@ -16,7 +16,7 @@ console.log("engine", engine, browser.version());
 async function open(width, height) {
   const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1 });
   const errors = []; page.on("pageerror", (e) => errors.push(String(e)));
-  await page.goto(pathToFileURL(path.join(here, "out", "test.html")).href);
+  await page.goto(process.env.DEMO_URL || pathToFileURL(path.join(here, "out", "test.html")).href);
   await page.waitForTimeout(1500);
   await page.evaluate(() => document.querySelector("#crt").scrollIntoView({ block: "center" }));
   await page.waitForTimeout(600);
@@ -37,7 +37,17 @@ const near = (a, b, t = 1.5) => Math.abs(a - b) <= t;
   check("five icons", (await count(page, ".xp-icon")) === 5);
   check("heatmap is gone", (await count(page, "#activity, .grid-days, .year")) === 0);
   check("Discord handle is ogexr. with the dot", (await page.textContent("#discord-handle")) === "ogexr.");
-  check("contribution count still shown", /^\d+$/.test((await page.textContent("#stat-contrib")).trim()));
+  check("About lists the interests and no numbers", (await page.evaluate(() => [...document.querySelectorAll(".interests li")].map((l) => l.textContent).join(","))) === "Minecraft,Roblox" && (await count(page, ".stats, #stat-contrib")) === 0);
+  await page.evaluate(() => document.querySelector("#eye-open").scrollIntoView({ block: "center" }));
+  await page.click("#eye-open");
+  await page.waitForTimeout(700);
+  const reel = await page.evaluate(() => ({ open: document.querySelector("#eye-reel").open, note: !document.querySelector("#eye-note").hidden, video: !document.querySelector("#eye-video").hidden }));
+  check("the Enigma eye opens the video dialog; with no file yet it says so", reel.open && reel.note !== reel.video, JSON.stringify(reel));
+  await page.screenshot({ path: path.join(out, engine + "-int-reel.png") });
+  await page.click("#eye-close");
+  check("Close shuts the dialog", !(await page.evaluate(() => document.querySelector("#eye-reel").open)));
+  await page.evaluate(() => document.querySelector("#crt").scrollIntoView({ block: "center" }));
+  await page.waitForTimeout(400);
   const em = await page.evaluate(() => parseFloat(getComputedStyle(document.querySelector(".xp")).fontSize));
   check("desktop type is a whole number of px, 13 to 18", Number.isInteger(em) && em >= 13 && em <= 18, String(em));
 

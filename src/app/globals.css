@@ -1,0 +1,5 @@
+:root {
+  --serif: var(--font-serif), "Iowan Old Style", Georgia, serif;
+  --mono: var(--font-mono), ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --pixel: var(--font-pixel), ui-monospace, monospace;
+}
