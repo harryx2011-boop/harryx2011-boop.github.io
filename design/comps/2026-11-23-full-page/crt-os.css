@@ -101,7 +101,8 @@
 
 /* apps */
 .app-film { background: var(--aether-edge); }
-.app-video { flex: 1; min-height: 0; width: 100%; object-fit: contain; background: var(--aether-edge); }
+/* the film fills the window body by position, not by flex: WebKit gives a flexed video its own 2:1 box until the file's size is known */
+.xp .app-video { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: contain; background: var(--aether-edge); }
 .app-bar { position: absolute; left: 0.4em; bottom: 0.4em; }
 .app-btn, .app-nav {
   position: relative; min-height: 1.9em; padding: 0 0.8em; border: 0; background: var(--aether-navy); color: var(--aether-ice); cursor: pointer;
