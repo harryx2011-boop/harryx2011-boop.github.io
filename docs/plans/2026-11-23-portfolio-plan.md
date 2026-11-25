@@ -1,4 +1,4 @@
-Status: PLANNED
+Status: IN PROGRESS (2026-11-25: steps 1 to 4 done, step 5 half done; next is step 6)
 
 # Portfolio plan (harryxie.me)
 
