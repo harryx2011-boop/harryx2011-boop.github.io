@@ -12,7 +12,7 @@ The only colours, sizes, radii and easings the site may use. Source of truth in 
 | `--faint` | `#3b393f` | empty days in the activity grid, window buttons |
 | `--bezel`, `--metal` | `#151517`, `#2c2c31` | the laptop frame and base |
 | `--ink` | `#ece8e0` | all text, pill borders |
-| `--dim` | `#918d86` | secondary text |
+| `--dim` | `#b0aba3` (8.8:1 on `--void`; was `#918d86`, 6.1:1, raised 2026-11-25 after Harry: "some sentences are hard to read") | secondary text |
 | `--furnace-1..4` | `#9a2c12`, `#e2541c`, `#ffab45`, `#fff3dc` | the hole, the activity grid, the dot between the hands. Focus rings are `--ink` |
 | `--aether-ice`, `-sky`, `-blue`, `-navy` | `#eef8fa`, `#71b1d7`, `#1c5a8b`, `#0a1930` | the four faces of the Aether mark |
 | `--aether-deep` to `--aether-blue` | `#0b1d36` to `#1c5a8b` | the blue banner band (sampled from `banner-blue.png`) |
@@ -44,14 +44,14 @@ The screen's desktop uses only the Aether blues, `--ink` and `--void`. No dither
 |---|---|---|
 | `--serif` | Newsreader, light 300 for display, 400 for the wordmark and titles | sentence, chapter words, titles, note |
 | `--mono` | IBM Plex Mono 400 and 500 | the glyph field, the activity grid, numbers. Never word labels (Harry, 2026-11-24) |
-| `--pixel` | Pixelify Sans 400 to 700 | text inside the old computer's screen only |
+| `--pixel` | DotGothic16, weight 400 only, always 16 px (its drawn size; other sizes blur, and Pixelify Sans read "569" as "S69") | text inside the old computer's screen only |
 | `--t-say` | `clamp(28px, min(3.1vw, 5svh), 44.64px)`, line 1.14, tracking -0.015em | hero sentence (measured: 44.64 px light) |
 | `--t-head` | `clamp(64px, 11vw, 168px)`, line 0.92, tracking -0.035em, italic | chapter words |
 | `--t-note` | `clamp(24px, 2.5vw, 36px)`, line 1.25 | About note |
 | `--t-title` | `28px`, line 1.1 | work titles, channel names |
-| `--t-label` | `17px` (16 px under 720 px), Newsreader, sentence case, line 1 | nav links, buttons, handles, the units of the two counts |
+| `--t-label` | `17px` (16 px under 720 px), Newsreader, sentence case, line 1 | nav links, buttons |
 | `--t-mono` | `15px`, line 1.6 | mono body (raised from the measured 13 px so prose is not smaller than labels) |
-| `--t-word`, `--t-drawer` | `22px`, `35px` | the name in the header; phone menu links (measured) |
+| `--t-word`, `--t-drawer` | `22px`, `35px` | the name in the header, the Contact handles and the units of the two counts; phone menu links (measured) |
 
 Never Inter, Geist, Space Grotesk or JetBrains Mono for display.
 

@@ -1,45 +1,5 @@
+/* About: the contribution count comes from the build's data file; the number in the markup is the fallback. */
 (function () {
-  var data = window.CONTRIB;
-  var el = document.getElementById("activity");
-  if (!data || !el) return;
-
-  var GLYPHS = ".:-=+*#%@";
-  var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  var weeks = data.weeks;
-  var first = new Date(data.end + "T00:00:00Z");
-  var days = weeks.reduce(function (n, w) { return n + w.length; }, 0);
-  first.setUTCDate(first.getUTCDate() - (days - 1));
-  var max = Math.max.apply(null, weeks.map(function (w) { return Math.max.apply(null, w); }));
-  var total = 0, n = 0;
-
-  function fmt(d) { return d.getUTCDate() + " " + MONTHS[d.getUTCMonth()]; }
-
-  weeks.forEach(function (week) {
-    for (var d = 0; d < 7; d++) {
-      var cell = document.createElement("span");
-      if (d < week.length) {
-        var c = week[d];
-        var day = new Date(first); day.setUTCDate(first.getUTCDate() + n); n++;
-        total += c;
-        var k = c ? Math.sqrt(c / max) : 0;
-        cell.textContent = c ? GLYPHS[Math.min(GLYPHS.length - 1, Math.round(k * (GLYPHS.length - 1)))] : "·";
-        if (c) cell.className = k > 0.66 ? "h3" : k > 0.33 ? "h2" : "h1";
-        cell.title = fmt(day) + ": " + c + (c === 1 ? " contribution" : " contributions");
-      } else {
-        cell.textContent = " ";
-      }
-      el.appendChild(cell);
-    }
-  });
-
-  var last = new Date(data.end + "T00:00:00Z");
-  el.setAttribute("aria-label", total + " contributions between " + fmt(first) + " and " + fmt(last) + " " + last.getUTCFullYear() + ", drawn as one character per day");
-  var stat = document.getElementById("stat-contrib");
-  if (stat) stat.textContent = String(data.total);
-
-  /* the year is wider than a phone: its box scrolls sideways and starts at the newest week */
-  var box = el.parentElement;
-  function toNewest() { box.scrollLeft = box.scrollWidth; }
-  toNewest();
-  window.addEventListener("load", toNewest);
+  var data = window.CONTRIB, stat = document.getElementById("stat-contrib");
+  if (data && stat && typeof data.total === "number") stat.textContent = String(data.total);
 })();

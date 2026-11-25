@@ -23,22 +23,25 @@
   var SUNK = { out: C.beige4, hi: C.beige4, mid: C.beige3, lo: C.beige1 };
   K.plate = plate; K.BEIGE = BEIGE;
 
-  K.monitor = function (B, cx, top, rnd) {
-    var x = cx - SHELL_W / 2, sx = cx - SCREEN_W / 2, sy = top + 16, i, j;
+  /* extra widens the case and the glass by that many pixels on each side: 0 is the 4:3 model, the windowsill uses a wide one */
+  K.monitor = function (B, cx, top, rnd, extra) {
+    var e = extra || 0, LW = SHELL_W + e * 2, SW = SCREEN_W + e * 2;
+    var x = cx - LW / 2, sx = cx - SW / 2, sy = top + 16, i, j;
     /* the tube's back, stepped, seen from slightly above; vents cut into it */
-    [[62, 12, 4], [80, 8, 4], [94, 4, 6]].forEach(function (l) {
+    [[62 + e, 12, 4], [80 + e, 8, 4], [94 + e, 4, 6]].forEach(function (l) {
       B.rect(cx - l[0] - 1, top - l[1] - 1, l[0] * 2 + 2, l[2] + 2, C.beige4);
       B.rect(cx - l[0], top - l[1], l[0] * 2, l[2], C.beige2);
       B.rect(cx - l[0], top - l[1], l[0] * 2, 2, C.beige1);
       B.rect(cx + l[0] - 3, top - l[1] + 2, 3, l[2] - 2, C.beige3);
     });
-    for (i = 0; i < 5; i++) { B.rect(cx - 48 + i * 20, top - 10, 14, 1, C.beige4); B.rect(cx - 48 + i * 20, top - 6, 14, 1, C.beige4); }
+    var vents = 5 + Math.floor(e / 10), v0 = cx - vents * 10 + 2;
+    for (i = 0; i < vents; i++) { B.rect(v0 + i * 20, top - 10, 14, 1, C.beige4); B.rect(v0 + i * 20, top - 6, 14, 1, C.beige4); }
     /* front shell and the sunken ring around the glass */
-    plate(B, x, top, SHELL_W, SHELL_H, 7, BEIGE);
-    plate(B, sx - 7, sy - 7, SCREEN_W + 14, SCREEN_H + 14, 11, SUNK);
-    plate(B, sx - 2, sy - 2, SCREEN_W + 4, SCREEN_H + 4, 9, { out: C.glassEdge, hi: C.glassEdge, mid: C.glassDeep, lo: C.glassEdge });
+    plate(B, x, top, LW, SHELL_H, 7, BEIGE);
+    plate(B, sx - 7, sy - 7, SW + 14, SCREEN_H + 14, 11, SUNK);
+    plate(B, sx - 2, sy - 2, SW + 4, SCREEN_H + 4, 9, { out: C.glassEdge, hi: C.glassEdge, mid: C.glassDeep, lo: C.glassEdge });
     /* chin: blank badge plate, two dials, vents, power button and light */
-    var cy = sy + SCREEN_H + 12, right = x + SHELL_W;
+    var cy = sy + SCREEN_H + 12, right = x + LW;
     B.rect(x + 14, cy, 28, 8, C.beige4); B.rect(x + 15, cy + 1, 26, 6, C.beige3); B.rect(x + 15, cy + 7, 26, 1, C.beige1);
     for (i = 0; i < 8; i++) { B.rect(x + 56 + i * 3, cy, 1, 8, C.beige4); B.put(x + 57 + i * 3, cy, C.beige1); }
     B.rect(x + 59, cy + 1, 1, 6, C.moss2); B.rect(x + 62, cy + 3, 1, 4, C.moss1); B.rect(x + 74, cy + 2, 1, 5, C.moss2);
@@ -49,19 +52,19 @@
     B.rect(right - 38, cy, 14, 8, C.beige4); B.rect(right - 37, cy + 1, 12, 6, C.beige3); B.rect(right - 37, cy + 1, 12, 1, C.beige1); B.rect(right - 37, cy + 7, 12, 1, C.beige4);
     B.rect(right - 18, cy + 2, 4, 4, C.furnace1); B.rect(right - 17, cy + 3, 2, 2, C.furnace2); B.put(right - 17, cy + 3, C.furnace3);
     /* wear: scuffs, grime, a crack from the top right corner */
-    for (i = 0; i < 16; i++) {
-      var wx = x + 6 + rnd.int(0, SHELL_W - 12), wy = top + 3 + rnd.int(0, SHELL_H - 8);
-      if (wx > sx - 8 && wx < sx + SCREEN_W + 8 && wy > sy - 8 && wy < sy + SCREEN_H + 8) continue;
+    for (i = 0; i < 16 + (e >> 1); i++) {
+      var wx = x + 6 + rnd.int(0, LW - 12), wy = top + 3 + rnd.int(0, SHELL_H - 8);
+      if (wx > sx - 8 && wx < sx + SW + 8 && wy > sy - 8 && wy < sy + SCREEN_H + 8) continue;
       var c = rnd() < 0.5 ? C.beige1 : C.beige3, n = rnd.int(2, 5);
       for (j = 0; j < n; j++) B.put(wx + j, wy + (j >> 1), c);
     }
-    [[x + 6, top + SHELL_H - 9, 9, 3], [x + SHELL_W - 40, top + SHELL_H - 8, 14, 2], [x + 80, top + SHELL_H - 6, 10, 2], [x + 4, top + 40, 2, 7]].forEach(function (g) { B.rect(g[0], g[1], g[2], g[3], C.beige3); });
+    [[x + 6, top + SHELL_H - 9, 9, 3], [x + LW - 40, top + SHELL_H - 8, 14, 2], [x + 80, top + SHELL_H - 6, 10, 2], [x + 4, top + 40, 2, 7]].forEach(function (g) { B.rect(g[0], g[1], g[2], g[3], C.beige3); });
     var px = right - 9, py = top + 4;
     for (i = 0; i < 18; i++) { px -= rnd.int(0, 1); py += 1; B.put(px, py, C.beige4); if (i === 8) B.line(px, py, px + 4, py + 4, C.beige4); }
     /* neck and swivel base */
-    B.rect(cx - 27, top + SHELL_H - 1, 54, 5, C.beige4); B.rect(cx - 26, top + SHELL_H - 1, 52, 4, C.beige3); B.rect(cx - 26, top + SHELL_H - 1, 52, 1, C.beige4);
-    plate(B, cx - 58, top + SHELL_H + 3, 116, 9, 3, { out: C.beige4, hi: C.beige1, mid: C.beige2, lo: C.beige3 });
-    return { x: sx, y: sy, w: SCREEN_W, h: SCREEN_H, shell: { x: x, y: top, w: SHELL_W, h: SHELL_H }, floor: top + SHELL_H + 12 };
+    B.rect(cx - 27 - (e >> 1), top + SHELL_H - 1, 54 + e, 5, C.beige4); B.rect(cx - 26 - (e >> 1), top + SHELL_H - 1, 52 + e, 4, C.beige3); B.rect(cx - 26 - (e >> 1), top + SHELL_H - 1, 52 + e, 1, C.beige4);
+    plate(B, cx - 58 - e, top + SHELL_H + 3, 116 + e * 2, 9, 3, { out: C.beige4, hi: C.beige1, mid: C.beige2, lo: C.beige3 });
+    return { x: sx, y: sy, w: SW, h: SCREEN_H, shell: { x: x, y: top, w: LW, h: SHELL_H }, floor: top + SHELL_H + 12 };
   };
 
   /* keyboard: a trapezoid seen from above; the back edge is narrower than the front */

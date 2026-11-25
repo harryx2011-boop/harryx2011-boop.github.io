@@ -1,12 +1,12 @@
 /* CRT mount: draws a scene into every .crt element at load, sizes the screen from the drawing, and redraws when the grid width changes. */
 (function () {
-  var NARROW_AT = 560, NARROW = 224;
+  var NARROW_AT = 900, NARROW = 224;
 
   function sceneOf(el) { return CRT.scenes[el.getAttribute("data-scene")] || CRT.scenes.a; }
-  /* the grid a scene draws on: a narrow container gets a smaller one, or the scene's own close-up (scene.narrow = { W, H }) */
+  /* the grid a scene draws on: a container up to NARROW_AT wide (a phone, a tablet held upright) gets a smaller one, or the scene's own close-up (scene.narrow = { W, H }) */
   function gridOf(el) {
     var scene = sceneOf(el);
-    if (el.clientWidth && el.clientWidth < NARROW_AT) return scene.narrow || { W: NARROW, H: scene.H };
+    if (el.clientWidth && el.clientWidth <= NARROW_AT) return scene.narrow || { W: NARROW, H: scene.H };
     return { W: scene.W || 288, H: scene.H };
   }
 

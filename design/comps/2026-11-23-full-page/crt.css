@@ -2,8 +2,10 @@
 .work .rig { padding-bottom: var(--s-7); }
 /* on a phone the computer runs edge to edge (the heading keeps its gutter) so the screen is as large as the width allows */
 @media (max-width: 720px) { .work .rig { padding-left: 0; padding-right: 0; } }
+/* the wide computer fills the column and stays about one screen tall; the close-up (grid 184 wide, taller than wide) is capped by height alone */
+.crt[data-grid="184"] { max-width: 84svh; }
 .crt {
-  position: relative; width: 100%; max-width: min(1480px, 135svh); margin: 0 auto;
+  position: relative; width: 100%; max-width: min(1480px, 146svh); margin: 0 auto;
   aspect-ratio: var(--w, 320) / var(--h, 240);
   container-type: inline-size;
   --lp: calc(100cqw / var(--w, 320));

@@ -14,7 +14,10 @@
       ["...kkkkkkkkkk...", "................"]),
     terminal: [].concat(["................", "................", ".kkkkkkkkkkkkkk."],
       wrap(".k", ["ssssssssssss", "dddddddddddd", "dwdddddddddd", "ddwddddddddd", "dwdddddyyydd", "dddddddddddd", "dddddddddddd", "dddddddddddd", "dddddddddddd", "dddddddddddd"], "k."),
-      [".kkkkkkkkkkkkkk.", "................", "................"])
+      [".kkkkkkkkkkkkkk.", "................", "................"]),
+    paint: [].concat(["................", ".kkkkkkkkkkkkkk."],
+      wrap(".k", ["wwwwwwwwwwww", "wyywwwwwwwww", "wyyywwwsssww", "wwyyywwsssww", "wwwyywwwwwww", "wwwwwwbbwwww", "wwwwwbbbbwww", "wsswwwbbwwww", "wsswwwwwwwww", "wwwwwwwwwwww"], "k."),
+      [".kkkkkkkkkkkkkk.", "................", "................", "................"])
   };
   /* window-control glyphs on an 8 by 8 grid, drawn in currentColor */
   var GLYPH = {
@@ -48,6 +51,6 @@
       var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 48" preserveAspectRatio="none" shape-rendering="crispEdges"><rect width="64" height="48" fill="#71b1d7"/>' + s + "</svg>";
       return "url(\"data:image/svg+xml," + encodeURIComponent(svg) + "\")";
     },
-    names: ["film", "picture", "text", "terminal"]
+    names: ["film", "picture", "text", "terminal", "paint"]
   };
 })();

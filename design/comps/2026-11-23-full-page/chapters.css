@@ -14,24 +14,14 @@
   .banner video { aspect-ratio: 2 / 1; }
 }
 
-/* About: row one is the picture, then the name with its two counts; row two is the whole year of GitHub activity drawn in characters */
+/* About: the picture, then the name with its two counts */
 .about-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--s-6); align-items: start; }
 .portrait { width: 100%; max-width: 320px; aspect-ratio: 1; }
 .who { display: grid; gap: var(--s-5); justify-items: start; align-content: end; align-self: end; }
 .who .name { font: 400 var(--t-title) / 1.1 var(--serif); letter-spacing: -0.015em; }
-.year { grid-column: 1 / -1; min-width: 0; overflow-x: auto; }
-.grid-days {
-  display: grid; grid-template-rows: repeat(7, 1.5em); grid-auto-flow: column; grid-auto-columns: 1.5em; width: max-content;
-  font-family: var(--mono); font-weight: 500; font-size: clamp(9px, 1.15vw, 18px); line-height: 1.5; text-align: center;
-  margin: 0;
-}
-.grid-days span { color: var(--faint); }
-.grid-days .h1 { color: var(--furnace-2); }
-.grid-days .h2 { color: var(--furnace-3); }
-.grid-days .h3 { color: var(--furnace-4); }
 .stats { display: grid; grid-template-columns: auto 1fr; gap: var(--s-1) var(--s-2); align-items: baseline; }
 .stats dt { font-family: var(--mono); font-size: var(--t-title); line-height: 1; font-weight: 500; font-variant-numeric: tabular-nums; text-align: right; }
-.stats dd { font-size: var(--t-label); line-height: 1.3; color: var(--dim); }
+.stats dd { font-size: var(--t-word); line-height: 1.3; color: var(--dim); }
 @media (max-width: 720px) {
   .about-grid { grid-template-columns: minmax(0, 1fr); }
   .portrait { max-width: 200px; }
@@ -50,7 +40,7 @@
 }
 .channel:active { transform: scale(0.98); }
 .channel svg { width: 28px; height: 28px; fill: currentColor; }
-.channel .handle { font-size: var(--t-label); line-height: 1; color: var(--dim); transition: color 300ms var(--ease-hover); }
+.channel .handle { font-size: var(--t-word); line-height: 1; color: var(--dim); transition: color 300ms var(--ease-hover); }
 @media (hover: hover) and (pointer: fine) { .channel:hover .handle { color: var(--ink); } }
 @media (max-width: 720px) {
   .contact-copy { bottom: var(--s-5); }

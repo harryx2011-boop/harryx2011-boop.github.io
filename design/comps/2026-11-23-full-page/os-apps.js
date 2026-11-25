@@ -85,12 +85,12 @@
     var out = el("div", "app-out"), row = el("label", "app-prompt"), input = el("input", "app-input");
     var total = window.CONTRIB && typeof window.CONTRIB.total === "number" ? window.CONTRIB.total : null;
     var github = "12 public repositories" + (total !== null ? ", " + total + " contributions in the last year" : "");
-    var facts = { whoami: "Harry Xie, also Elixir", role: "Founder of Aether", github: github, discord: "@ogexr" };
+    var facts = { whoami: "Harry Xie, also Elixir", role: "Founder of Aether", github: github, discord: "ogexr." };
     var cmds = {
       help: "help, whoami, work, contact, clear",
       whoami: facts.whoami,
-      work: "Reveal film, Night Market, about.txt",
-      contact: "Discord: @ogexr"
+      work: "Reveal film, Night Market, about.txt, Paint",
+      contact: "Discord: ogexr."
     };
     body.className += " app-term"; out.setAttribute("role", "log");
     function line(text) { out.appendChild(el("div", "app-line", text)); }
@@ -113,8 +113,8 @@
   }
 
   window.OSApps = [
-    { id: "film", title: "Reveal film", icon: "film", size: [0.74, 0.72], ratio: 9 / 16, build: film },
-    { id: "market", title: "Night Market", icon: "picture", size: [0.74, 0.74], build: market },
+    { id: "film", title: "Reveal film", icon: "film", size: [0.78, 0.92], ratio: 9 / 16, build: film },
+    { id: "market", title: "Night Market", icon: "picture", size: [0.7, 0.86], build: market },
     { id: "notes", title: "about.txt", icon: "text", size: [0.6, 0.46], build: notes },
     { id: "terminal", title: "Terminal", icon: "terminal", size: [0.68, 0.58], build: terminal }
   ];

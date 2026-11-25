@@ -8,13 +8,13 @@
   --bezel: #151517;
   --metal: #2c2c31;
   --ink: #ece8e0;
-  --dim: #918d86;
+  --dim: #b0aba3;
   --furnace-1: #9a2c12; --furnace-2: #e2541c; --furnace-3: #ffab45; --furnace-4: #fff3dc;
   --aether-ice: #eef8fa; --aether-sky: #71b1d7; --aether-blue: #1c5a8b; --aether-navy: #0a1930;
   --aether-deep: #0b1d36; --aether-edge: #050c17; --aether-tile-1: #0b1a2d; --aether-tile-2: #03070a;
   --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
   --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
-  --pixel: "Pixelify Sans", ui-monospace, monospace;
+  --pixel: "DotGothic16", ui-monospace, monospace;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-hover: cubic-bezier(0.5, 1, 0.89, 1);
   --t-label: 17px;
@@ -29,7 +29,7 @@
   --pad: 48px;
   --bar: 96px;
   --gap-chapter: clamp(96px, 14vw, 192px);
-  --dim-a: 0.62;
+  --dim-a: 0.72;
   --gut-l: max(var(--pad), env(safe-area-inset-left, 0px));
   --gut-r: max(var(--pad), env(safe-area-inset-right, 0px));
 }

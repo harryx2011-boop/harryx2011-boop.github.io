@@ -1,9 +1,9 @@
-/* The screen's desktop. Sizes use em on a root font that follows the monitor (never under 12px); a narrow screen gets full-size windows and big targets. */
+/* The screen's desktop. The type is always 16px, the size the pixel face is drawn for, in one weight; every other size is in em. A narrow screen gets full-size windows and big targets. */
 .xp {
   --bar-h: 2.6em; --title-h: 2.2em;
   position: absolute; inset: 0; overflow: hidden;
-  font: 400 max(12px, 2.3cqw) / 1.25 "Pixelify Sans", ui-monospace, monospace;
-  font-variant-ligatures: none;
+  font: 400 16px / 1.3 var(--pixel);
+  font-variant-ligatures: none; font-synthesis: none;
   color: var(--aether-ice); background: var(--aether-sky) var(--wall) center / 100% 100% no-repeat;
   user-select: none; -webkit-user-select: none;
 }
@@ -15,20 +15,21 @@
 .xp-art { display: grid; flex: none; }
 .xp-art svg { display: block; width: 1.4em; height: 1.4em; }
 
-/* desktop icons: one column on the left, a 2 by 2 grid on a narrow screen. --st is how far the plants hang over the top of the glass (set by the scene); icons and windows start below it, the wallpaper runs under it */
-.xp-desk { position: absolute; inset: var(--st, 0%) 0 var(--bar-h) 0; padding: 0.9em; display: grid; grid-template-columns: 5.6em; grid-auto-rows: min-content; gap: 0.5em; align-content: start; }
+/* desktop icons: a column on the left that wraps into a second one on a short screen, a grid on a narrow screen. Each can be dragged to a new place. --st is how far the plants hang over the top of the glass (set by the scene); icons and windows start below it, the wallpaper runs under it */
+.xp-desk { position: absolute; inset: var(--st, 0%) 0 var(--bar-h) 0; padding: 0.6em; display: flex; flex-flow: column wrap; align-content: flex-start; gap: 0.2em; }
 .xp-icon {
-  display: grid; justify-items: center; gap: 0.3em; min-height: 40px; padding: 0.3em 0.2em; border: 0; background: none;
-  color: var(--aether-ice); cursor: pointer;
-  text-shadow: 1px 0 0 var(--aether-navy), -1px 0 0 var(--aether-navy), 0 1px 0 var(--aether-navy), 0 -1px 0 var(--aether-navy);
+  display: grid; justify-items: center; gap: 0.3em; min-height: 40px; padding: 0.2em; border: 0; background: none;
+  width: 7em; color: var(--aether-ice); cursor: pointer;
   transition: transform 120ms var(--ease-out);
 }
-.xp-icon .xp-art svg { width: 2.6em; height: 2.6em; }
-.xp-label { padding: 0 0.25em; text-align: center; line-height: 1.15; }
+.xp:not(.is-narrow) .xp-icon { touch-action: none; }
+.xp-icon.is-drag { z-index: 1; cursor: grabbing; }
+.xp-icon .xp-art svg { width: 2em; height: 2em; }
+.xp-label { padding: 0 0.3em; white-space: nowrap; line-height: 1.25; background: var(--aether-navy); }
 .xp-icon:active { transform: scale(0.97); }
-.is-narrow .xp-desk { grid-template-columns: repeat(2, 1fr); gap: 0.4em; padding: 0.6em 0.5em; justify-items: center; }
+.is-narrow .xp-desk { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4em; padding: 0.6em 0.5em; justify-items: center; align-content: start; }
 .is-narrow .xp-icon .xp-art svg { width: 2.4em; height: 2.4em; }
-.is-narrow .xp-icon { min-height: 44px; }
+.is-narrow .xp-icon { min-height: 44px; width: auto; }
 
 /* windows */
 .xp-wins { position: absolute; inset: var(--st, 0%) 0 var(--bar-h) 0; pointer-events: none; }
@@ -45,7 +46,7 @@
 .xp-win.is-active .xp-title { background: var(--aether-blue); color: var(--aether-ice); }
 .xp-win.is-drag .xp-title { cursor: grabbing; }
 .is-narrow .xp-title, .xp-win.is-max .xp-title { cursor: default; }
-.xp-name { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-weight: 600; }
+.xp-name { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .xp-cap {
   position: relative; display: grid; place-items: center; flex: none; width: 1.6em; height: 1.6em; padding: 0; border: 0;
   background: var(--aether-sky); color: var(--aether-navy); cursor: pointer;
@@ -58,6 +59,24 @@
 .is-narrow .xp-cap { width: 44px; height: 44px; }
 .is-narrow .xp-cap::before { content: none; }
 .is-narrow [data-act="max"] { display: none; }
+/* resize handles: strips on the edges and squares on the corners, half outside the border; the lower right corner shows a grip. Off on a narrow screen and on a maximized window */
+.xp-rs { position: absolute; z-index: 2; touch-action: none; }
+.xp-rs-n, .xp-rs-s { left: 0.5em; right: 0.5em; height: 0.5em; cursor: ns-resize; }
+.xp-rs-e, .xp-rs-w { top: 0.5em; bottom: 0.5em; width: 0.5em; cursor: ew-resize; }
+.xp-rs-n { top: -0.3em; }
+.xp-rs-s { bottom: -0.3em; }
+.xp-rs-e { right: -0.3em; }
+.xp-rs-w { left: -0.3em; }
+.xp-rs-ne, .xp-rs-nw, .xp-rs-sw { width: 0.6em; height: 0.6em; }
+.xp-rs-ne { top: -0.3em; right: -0.3em; cursor: nesw-resize; }
+.xp-rs-nw { top: -0.3em; left: -0.3em; cursor: nwse-resize; }
+.xp-rs-sw { bottom: -0.3em; left: -0.3em; cursor: nesw-resize; }
+.xp-rs-se { right: -0.3em; bottom: -0.3em; width: 1.3em; height: 1.3em; cursor: nwse-resize; }
+.xp-rs-se::after {
+  content: ""; position: absolute; right: 0.45em; bottom: 0.45em; width: 0.7em; height: 0.7em;
+  background: linear-gradient(135deg, transparent 0 40%, var(--aether-sky) 40% 55%, transparent 55% 70%, var(--aether-sky) 70% 85%, transparent 85%);
+}
+.xp-win.is-max .xp-rs, .is-narrow .xp-rs { display: none; }
 .xp-body { position: relative; display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; user-select: text; -webkit-user-select: text; }
 
 /* taskbar and clock */
@@ -83,9 +102,9 @@
 /* apps */
 .app-film { background: var(--aether-edge); }
 .app-video { flex: 1; min-height: 0; width: 100%; object-fit: contain; background: var(--aether-edge); }
-.app-bar { position: absolute; right: 0.4em; bottom: 0.4em; }
+.app-bar { position: absolute; left: 0.4em; bottom: 0.4em; }
 .app-btn, .app-nav {
-  position: relative; min-height: 1.9em; padding: 0 0.8em; border: 0; background: var(--aether-navy); color: var(--aether-ice); font-weight: 600; cursor: pointer;
+  position: relative; min-height: 1.9em; padding: 0 0.8em; border: 0; background: var(--aether-navy); color: var(--aether-ice); cursor: pointer;
   box-shadow: inset 1px 1px 0 var(--aether-blue), inset -1px -1px 0 var(--aether-edge);
   transition: transform 120ms var(--ease-out);
 }
@@ -112,11 +131,11 @@
 .is-narrow .app-thumb { width: 44px; height: 44px; aspect-ratio: auto; }
 .is-narrow .app-thumb::before { content: none; }
 
-.app-note { flex: 1; min-height: 0; padding: 0.9em; overflow: auto; line-height: 1.55; font-size: 1.08em; cursor: text; }
+.app-note { flex: 1; min-height: 0; padding: 0.9em 1em; overflow: auto; line-height: 1.5; cursor: text; }
 .app-note:focus-visible { outline-offset: -4px; }
 .app-term { background: var(--aether-edge); padding: 0.6em; }
 .app-out { flex: 1; min-height: 0; overflow: auto; }
-.app-line { white-space: pre-wrap; overflow-wrap: anywhere; }
+.app-line { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.4; }
 .app-prompt { display: flex; align-items: center; gap: 0.5em; flex: none; min-height: 1.8em; }
 .app-caret { color: var(--aether-sky); }
 .app-input { flex: 1; min-width: 0; padding: 0; border: 0; background: none; color: inherit; caret-color: var(--aether-ice); outline: none; }
@@ -124,6 +143,23 @@
 .xp .app-input:focus-visible { outline: 0; box-shadow: none; }
 .is-narrow .app-prompt { min-height: 44px; }
 .is-narrow .app-input { font-size: 16px; }
+
+/* Paint: the ink row on top, the page under it keeps its 64 by 40 shape */
+.app-paint { background: var(--aether-deep); }
+.app-tools { display: flex; align-items: center; gap: 0.35em; flex: none; padding: 0.4em; background: var(--aether-navy); }
+.app-ink {
+  position: relative; flex: none; width: 1.6em; height: 1.6em; padding: 0; border: 2px solid var(--aether-edge); cursor: pointer;
+  transition: transform 120ms var(--ease-out);
+}
+.app-ink::before { content: ""; position: absolute; inset: -0.3em -0.2em; }
+.app-ink[aria-pressed="true"] { border-color: var(--aether-ice); box-shadow: inset 0 0 0 2px var(--aether-navy); }
+.app-ink:active { transform: scale(0.97); }
+.app-wipe { margin-left: auto; }
+.app-easel { position: relative; flex: 1; min-height: 0; background: var(--aether-edge); }
+.xp .app-canvas { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: contain; image-rendering: pixelated; touch-action: none; cursor: crosshair; }
+.is-narrow .app-tools { gap: 2px; padding: 2px 4px; }
+.is-narrow .app-ink { width: 36px; height: 44px; }
+.is-narrow .app-ink::before { content: none; }
 
 @media (hover: hover) and (pointer: fine) {
   .xp-icon:hover .xp-label { background: var(--aether-blue); }
@@ -133,6 +169,6 @@
   .app-thumb:hover { border-color: var(--aether-sky); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .xp-icon, .xp-cap, .xp-task, .app-btn, .app-nav, .app-thumb { transition: none; }
-  .xp-icon:active, .xp-cap:active, .xp-task:active, .app-btn:active, .app-nav:active, .app-thumb:active { transform: none; }
+  .xp-icon, .xp-cap, .xp-task, .app-btn, .app-nav, .app-thumb, .app-ink { transition: none; }
+  .xp-icon:active, .xp-cap:active, .xp-task:active, .app-btn:active, .app-nav:active, .app-thumb:active, .app-ink:active { transform: none; }
 }

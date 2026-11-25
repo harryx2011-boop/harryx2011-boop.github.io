@@ -3,7 +3,9 @@
   var C = CRT.C, P = CRT.plants, K = CRT.computer, E = CRT.env;
   var SH = K.SHELL_H;
 
-  function light(cx, top) { CRT.light = { x: cx - K.SCREEN_W / 2, y: top + 16, w: K.SCREEN_W, h: K.SCREEN_H }; }
+  /* WIDE: how much wider the windowsill computer is than the 4:3 model, in pixels on each side */
+  var WIDE = 32;
+  function light(cx, top, e) { e = e || 0; CRT.light = { x: cx - K.SCREEN_W / 2 - e, y: top + 16, w: K.SCREEN_W + e * 2, h: K.SCREEN_H }; }
   function wide(W) { return W >= 280; }
   /* vines: plan once, shadow on the plastic in the back buffer, paint in the front buffer */
   function vines(B, F, list, rnd) {
@@ -13,12 +15,12 @@
   function strands(B, F, xs, y, rnd, lo, hi) {
     xs.forEach(function (x) { var plan = P.strand(x, y, rnd.int(lo || 18, hi || 44), rnd); P.paintVine(B, plan, true); P.paintVine(F, plan); });
   }
-  function topMoss(B, cx, top, rnd) {
-    var lit = CRT.boost;
-    P.moss(B, cx - 62, cx + 62, top - 12, 3, rnd, lit); P.moss(B, cx - 80, cx - 62, top - 8, 3, rnd, lit); P.moss(B, cx + 62, cx + 80, top - 8, 3, rnd, lit);
-    P.moss(B, cx - 94, cx - 80, top - 4, 3, rnd, lit); P.moss(B, cx + 80, cx + 94, top - 4, 3, rnd, lit);
-    P.moss(B, cx - 98, cx - 70, top + 1, 2, rnd, lit); P.moss(B, cx + 40, cx + 96, top + 1, 2, rnd, lit);
-    E.patch(B, cx - 104, top + 2, 26, 10, rnd, false); E.patch(B, cx + 66, top + 2, 38, 12, rnd, true);
+  function topMoss(B, cx, top, rnd, e) {
+    var lit = CRT.boost; e = e || 0;
+    P.moss(B, cx - 62 - e, cx + 62 + e, top - 12, 3, rnd, lit); P.moss(B, cx - 80 - e, cx - 62 - e, top - 8, 3, rnd, lit); P.moss(B, cx + 62 + e, cx + 80 + e, top - 8, 3, rnd, lit);
+    P.moss(B, cx - 94 - e, cx - 80 - e, top - 4, 3, rnd, lit); P.moss(B, cx + 80 + e, cx + 94 + e, top - 4, 3, rnd, lit);
+    P.moss(B, cx - 98 - e, cx - 70 - e, top + 1, 2, rnd, lit); P.moss(B, cx + 40, cx + 96 + e, top + 1, 2, rnd, lit);
+    E.patch(B, cx - 104 - e, top + 2, 26, 10, rnd, false); E.patch(B, cx + 66 + e, top + 2, 38, 12, rnd, true);
   }
   function backLeaves(B, cx, y, rnd, n, spread) {
     for (var i = 0; i < n; i++) {
@@ -71,34 +73,37 @@
 
   /* A: front on, a wooden sill, ivy pouring from above. On a phone the grid is the close-up above. */
   CRT.scenes.a = {
-    name: "Windowsill", H: 240, narrow: { W: 184, H: 212 },
+    name: "Windowsill", H: 240, W: 288 + WIDE * 2, narrow: { W: 184, H: 212 },
     draw: function (B, F, W, H, rnd) {
       if (W < 200) return closeUp(B, F, W, H, rnd);
-      var cx = W / 2, top = 18; light(cx, top);
+      var cx = W / 2, top = 18, X = WIDE, half = K.SHELL_W / 2; light(cx, top, X);
+      /* ox: a point beside the case moves out with the case; bx: a point along the belt stretches with it */
+      function ox(k) { return cx + k + (k < 0 ? -X : X); }
+      function bx(k) { return cx + Math.round(k * (half + X) / half); }
       E.sill(B, W, H, 190, 228, rnd);
-      backLeaves(B, cx, top - 6, rnd, 9, 54);
-      B.rect(cx - 62, 190, 124, 3, C.bark1);
+      backLeaves(B, cx, top - 6, rnd, 9 + (X >> 3), 54 + X);
+      B.rect(cx - 62 - X, 190, 124 + X * 2, 3, C.bark1);
       K.cable(B, [[cx + 8, 200], [cx + 30, 194], [cx + 50, 188], [cx + 30, 184]]);
-      var m = K.monitor(B, cx, top, rnd), kb = wide(W) ? [84, 94] : [76, 86];
+      var m = K.monitor(B, cx, top, rnd, X), kb = [84 + (X >> 1), 94 + (X >> 1)];
       K.spill(B, m);
       B.rect(cx - kb[1] - 3, 219, kb[1] * 2 + 6, 6, C.bark1);
       K.keyboard(B, cx, 197, rnd, kb[0], kb[1]);
-      var mx = Math.min(cx + 106, W - 24); K.cable(B, [[mx + 7, 204], [mx + 8, 198], [cx + 90, 192]]); K.mouse(B, mx, 204);
-      topMoss(B, cx, top, rnd);
-      E.patch(B, cx - 104, top + SH - 26, 48, 26, rnd, false); E.patch(B, cx + 54, top + SH - 22, 50, 22, rnd, true);
+      var mx = Math.min(cx + kb[1] + 12, W - 24); K.cable(B, [[mx + 7, 204], [mx + 8, 198], [cx + kb[0] + 6, 192]]); K.mouse(B, mx, 204);
+      topMoss(B, cx, top, rnd, X);
+      E.patch(B, ox(-104), top + SH - 26, 48, 26, rnd, false); E.patch(B, ox(54), top + SH - 22, 50, 22, rnd, true);
       P.moss(B, cx - kb[0] + 8, cx - 20, 197, 2, rnd, CRT.boost); P.moss(B, cx + 30, cx + 62, 197, 2, rnd, CRT.boost);
       vines(B, F, [
-        [[[cx - 96, -8], [cx - 100, 14], [cx - 90, 34], [cx - 106, 62], [cx - 98, 96], [cx - 108, 128], [cx - 100, 160], [cx - 106, 192]], { thick: 3, leaf: 14, gap: 8, base: 0 }],
-        [[[cx + 88, -10], [cx + 98, 10], [cx + 86, 30], [cx + 104, 58], [cx + 96, 92], [cx + 108, 126], [cx + 98, 160], [cx + 104, 194]], { thick: 3, leaf: 14, gap: 8, base: 0 }],
+        [[[ox(-96), -8], [ox(-100), 14], [ox(-90), 34], [ox(-106), 62], [ox(-98), 96], [ox(-108), 128], [ox(-100), 160], [ox(-106), 192]], { thick: 3, leaf: 14, gap: 8, base: 0 }],
+        [[[ox(88), -10], [ox(98), 10], [ox(86), 30], [ox(104), 58], [ox(96), 92], [ox(108), 126], [ox(98), 160], [ox(104), 194]], { thick: 3, leaf: 14, gap: 8, base: 0 }],
         [[[cx - 20, -8], [cx - 30, 6], [cx - 24, 18], [cx - 44, 28], [cx - 62, 30]], { thick: 2, leaf: 12, gap: 7, base: 0 }],
         [[[cx + 30, -6], [cx + 36, 10], [cx + 28, 24], [cx + 50, 34], [cx + 68, 32]], { thick: 2, leaf: 12, gap: 7, base: 0 }],
         /* a belt that goes round the case: out past the left edge, across the chin, out past the right */
-        [[[cx - 124, top + 96], [cx - 112, top + 126], [cx - 88, top + 148], [cx - 56, top + 156], [cx - 20, top + 150], [cx + 18, top + 160], [cx + 54, top + 152], [cx + 92, top + 138], [cx + 116, top + 112]], { thick: 3, leaf: 12, gap: 8, base: 0 }],
-        [[[-8, 208], [26, 216], [56, 207], [cx - 100, 214], [cx - 108, 204]], { thick: 2, leaf: 13, gap: 8, base: 0 }],
-        [[[W + 6, 214], [W - 28, 220], [cx + 112, 210], [cx + 102, 200]], { thick: 2, leaf: 13, gap: 8, base: 0 }],
-        [[[cx - 112, 206], [cx - 76, 212], [cx - 36, 205], [cx + 6, 213]], { thick: 2, leaf: 11, gap: 7, base: 0 }]
+        [[[bx(-124), top + 96], [bx(-112), top + 126], [bx(-88), top + 148], [bx(-56), top + 156], [bx(-20), top + 150], [bx(18), top + 160], [bx(54), top + 152], [bx(92), top + 138], [bx(116), top + 112]], { thick: 3, leaf: 12, gap: 8, base: 0 }],
+        [[[-8, 208], [26, 216], [56, 207], [ox(-100), 214], [ox(-108), 204]], { thick: 2, leaf: 13, gap: 8, base: 0 }],
+        [[[W + 6, 214], [W - 28, 220], [ox(112), 210], [ox(102), 200]], { thick: 2, leaf: 13, gap: 8, base: 0 }],
+        [[[ox(-112), 206], [cx - 76, 212], [cx - 36, 205], [cx + 6, 213]], { thick: 2, leaf: 11, gap: 7, base: 0 }]
       ], rnd);
-      strands(B, F, [cx - 70, cx - 8, cx + 14, cx + 60, cx + 82], top - 2, rnd, 12, 22);
+      strands(B, F, [ox(-70), cx - 62, cx - 8, cx + 14, cx + 60, ox(82)], top - 2, rnd, 12, 22);
       onKeys(F, cx, 197, rnd, 7);
       E.edgeLeaves(F, W, H, rnd);
       return m;
