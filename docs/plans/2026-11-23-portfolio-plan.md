@@ -1,4 +1,4 @@
-Status: IN PROGRESS (2026-11-25: steps 1 to 4 done, step 5 half done; next is step 6)
+Status: IN PROGRESS (2026-11-26: steps 1 to 5 done, the site is live at https://harryxie.me from commit `764b2c6`, Pages builds by Actions; next is step 6, port `hole.js` and `camera.js`. The Enigma eye is hidden until its video exists, Harry's word)
 
 # Portfolio plan (harryxie.me)
 
