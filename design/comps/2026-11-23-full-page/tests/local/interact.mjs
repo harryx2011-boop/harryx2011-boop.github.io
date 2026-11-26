@@ -38,14 +38,20 @@ const near = (a, b, t = 1.5) => Math.abs(a - b) <= t;
   check("heatmap is gone", (await count(page, "#activity, .grid-days, .year")) === 0);
   check("Discord handle is ogexr. with the dot", (await page.textContent("#discord-handle")) === "ogexr.");
   check("About lists the interests and no numbers", (await page.evaluate(() => [...document.querySelectorAll(".interests li")].map((l) => l.textContent).join(","))) === "Minecraft,Roblox" && (await count(page, ".stats, #stat-contrib")) === 0);
-  await page.evaluate(() => document.querySelector("#eye-open").scrollIntoView({ block: "center" }));
-  await page.click("#eye-open");
-  await page.waitForTimeout(700);
-  const reel = await page.evaluate(() => ({ open: document.querySelector("#eye-reel").open, note: !document.querySelector("#eye-note").hidden, video: !document.querySelector("#eye-video").hidden }));
-  check("the Enigma eye opens the video dialog; with no file yet it says so", reel.open && reel.note !== reel.video, JSON.stringify(reel));
-  await page.screenshot({ path: path.join(out, engine + "-int-reel.png") });
-  await page.click("#eye-close");
-  check("Close shuts the dialog", !(await page.evaluate(() => document.querySelector("#eye-reel").open)));
+  if (process.env.EYE === "hidden") {
+    check("no Enigma eye and no video dialog while the video does not exist", (await count(page, "#eye-open, #eye-reel, #eye-note")) === 0);
+    await page.evaluate(() => document.querySelector("#about").scrollIntoView({ block: "center" }));
+    await page.screenshot({ path: path.join(out, engine + "-int-about.png") });
+  } else {
+    await page.evaluate(() => document.querySelector("#eye-open").scrollIntoView({ block: "center" }));
+    await page.click("#eye-open");
+    await page.waitForTimeout(700);
+    const reel = await page.evaluate(() => ({ open: document.querySelector("#eye-reel").open, note: !document.querySelector("#eye-note").hidden, video: !document.querySelector("#eye-video").hidden }));
+    check("the Enigma eye opens the video dialog; with no file yet it says so", reel.open && reel.note !== reel.video, JSON.stringify(reel));
+    await page.screenshot({ path: path.join(out, engine + "-int-reel.png") });
+    await page.click("#eye-close");
+    check("Close shuts the dialog", !(await page.evaluate(() => document.querySelector("#eye-reel").open)));
+  }
   await page.evaluate(() => document.querySelector("#crt").scrollIntoView({ block: "center" }));
   await page.waitForTimeout(400);
   const em = await page.evaluate(() => parseFloat(getComputedStyle(document.querySelector(".xp")).fontSize));

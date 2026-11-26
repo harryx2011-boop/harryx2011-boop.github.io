@@ -15,18 +15,22 @@ export function About() {
               {profile.interests.map((name) => <li key={name}>{name}</li>)}
             </ul>
           </div>
-          <button className="eye-btn" type="button" id="eye-open" aria-haspopup="dialog" aria-label="Enigma. Play the video">
-            <EnigmaEye />
-          </button>
+          {profile.enigmaVideo && (
+            <button className="eye-btn" type="button" id="eye-open" aria-haspopup="dialog" aria-label="Enigma. Play the video">
+              <EnigmaEye />
+            </button>
+          )}
         </div>
       </div>
-      <dialog className="reel" id="eye-reel" aria-label="Enigma video">
-        <div className="reel-in">
-          <video id="eye-video" src={profile.enigmaVideo} controls playsInline preload="none" />
-          <p className="reel-note" id="eye-note" hidden>The video is not here yet.</p>
-          <button className="pill" type="button" id="eye-close">Close</button>
-        </div>
-      </dialog>
+      {profile.enigmaVideo && (
+        <dialog className="reel" id="eye-reel" aria-label="Enigma video">
+          <div className="reel-in">
+            <video id="eye-video" src={profile.enigmaVideo} controls playsInline preload="none" />
+            <p className="reel-note" id="eye-note" hidden>The video is not here yet.</p>
+            <button className="pill" type="button" id="eye-close">Close</button>
+          </div>
+        </dialog>
+      )}
     </section>
   );
 }

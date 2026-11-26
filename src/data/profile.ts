@@ -4,5 +4,5 @@ export const profile = {
   github: "harryx2011-boop",
   discord: "ogexr.",
   interests: ["Minecraft", "Roblox"],
-  enigmaVideo: "media/enigma-eye.mp4",
+  enigmaVideo: null as string | null,
 } as const;
