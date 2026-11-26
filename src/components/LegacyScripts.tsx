@@ -1,8 +1,29 @@
 "use client";
 
 import { useEffect } from "react";
+import { startHeroCamera } from "@/hero/heroCamera";
 
-const FILES = ["data", "hole", "engine", "camera", "chapters", "crt-engine", "crt-plants", "crt-computer", "crt-ground", "crt-scenes", "crt-scene", "os-icons", "os-apps", "os-paint", "os", "about", "hands", "ui"];
+type Step = string | (() => void);
+
+const STEPS: Step[] = [
+  "data",
+  "engine",
+  startHeroCamera,
+  "chapters",
+  "crt-engine",
+  "crt-plants",
+  "crt-computer",
+  "crt-ground",
+  "crt-scenes",
+  "crt-scene",
+  "os-icons",
+  "os-apps",
+  "os-paint",
+  "os",
+  "about",
+  "hands",
+  "ui",
+];
 let started = false;
 
 function load(name: string): Promise<void> {
@@ -20,7 +41,10 @@ export function LegacyScripts() {
     if (started) return;
     started = true;
     void (async () => {
-      for (const name of FILES) await load(name);
+      for (const step of STEPS) {
+        if (typeof step === "string") await load(step);
+        else step();
+      }
     })();
   }, []);
   return null;

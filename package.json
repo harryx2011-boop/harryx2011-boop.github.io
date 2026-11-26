@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "next dev -p 5310 -H 127.0.0.1",
     "build": "next build",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "node --test \"src/**/*.test.ts\""
   },
   "dependencies": {
     "next": "16.4.6",
